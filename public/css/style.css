@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html, body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* NABVAR */
+
+.nav-bar {
+    height: 100px;
+    padding: 0 80px;
+    background-color: #fecc02;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-bar > img {
+    height: 80%;
+}
+
+.nav-bar > ul {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 300px;
+}
+
+.wrapper {
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.button-register {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+}
+
+/* INDEX */
+
+.index__banner {
+    height: 500px;
+    padding: 50px;
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.index__banner > h1 {
+    margin-top: 0;
+    font-size: 50px;
+}
+
+.index__banner > p {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.index__second-section {
+    padding: 30px 100px;
+    background-color: black;
+    color: white;
+}
+
+.index__second-section > h1 {
+    font-size: 40px;
+}
+
+.second-section__popular-movies {
+    display: flex;
+}
+
+.popular-movies__movie {
+    margin: 20px;
+}
+
+.popular-movies__movie > .fa-star {
+    color: #fecc02;
+}
+
+.popular-movies__movie > img {
+    width: 80%;
+    border-radius: 10px;
+}
