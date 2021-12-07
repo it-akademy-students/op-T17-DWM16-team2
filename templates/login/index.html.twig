@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LoginController!{% endblock %}
+
+{% block body %}
+<style>
+    
+</style>
+    
+<form method="post">
+    <h1>Login</h1>
+    <div>
+        <label for="inputEmail">Email</label>
+        <input type="email" name="email" id="inputEmail" class="form-control" required autofocus>
+    </div>
+    <div class="col-12">
+        <label for="inputPassword">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" required>
+    </div>
+    <div>
+        <button type="submit">
+            Sign in
+        </button>
+    </div>
+</form>
+        
+ 
+{% endblock %}

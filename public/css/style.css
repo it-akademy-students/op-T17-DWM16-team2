@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html, body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* NABVAR */
+
+.nav-bar {
+    height: 100px;
+    padding: 0 80px;
+    background-color: #fecc02;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-bar > a {
+    height: 80%;
+}
+
+.nav-bar > a > img {
+    height: 100%;
+}
+
+.nav-bar > ul {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 300px;
+}
+
+.button-register {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+}
+
+/* FOOTER */
+
+footer {
+    height: 300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px 100px;
+}
+
+/* INDEX */
+
+.index__banner {
+    height: 500px;
+    padding: 50px;
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.index__banner > h1 {
+    margin-top: 0;
+    font-size: 50px;
+}
+
+.index__banner > p {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.index__second-section {
+    padding: 30px 100px;
+    background-color: #101010;
+    color: white;
+}
+
+.index__second-section > h1 {
+    font-size: 40px;
+    margin: 20px;
+}
+
+.second-section__popular-movies {
+    display: flex;
+}
+
+.popular-movies__movie {
+    margin: 20px;
+    width: 100%;
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px 0px #000000;
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+    max-width: 300px;
+}
+
+.popular-movies__movie:hover {
+    top: -10px;
+}
+
+.movie__info > .fa-star, .index__second-section > h1 > .fa-film {
+    color: #fecc02;
+}
+
+.popular-movies__movie > img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.movie__info {
+    padding: 10px 30px;
+}
+
+.movie__year {
+    font-size: 13px;
+    color: #fecc02;
+}
