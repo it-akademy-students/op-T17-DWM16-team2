@@ -43,7 +43,6 @@ class HomeController extends AbstractController
                 'image' => 'https://imdb-api.com/images/original/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_Ratio0.6762_AL_.jpg'
             ]);
         }
-
         return $this->render('home/index.html.twig', [
             'popularMovies' => $popularMovies
         ]);
