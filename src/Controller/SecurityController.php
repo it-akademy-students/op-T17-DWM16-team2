@@ -12,9 +12,11 @@ class SecurityController extends AbstractController
         /**
      * @Route("/home", name="home")
      */
-    public function espace(AuthenticationUtils $authenticationUtils): Response
+
+     //si on est connecté on accède a home 
+    public function home(AuthenticationUtils $authenticationUtils): Response
     {
-       return new response('vous êtes connecté' );
+       return $this->render('home/index.html.twig');
     }
 
 

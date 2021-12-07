@@ -49,8 +49,8 @@ class LoginAuthentificatorAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
-        return new RedirectResponse($this->urlGenerator->generate('espace'));
+        // For example: redirection si l'authentification est reussi
+        return new RedirectResponse($this->urlGenerator->generate('home'));
       
     }
 

@@ -9,8 +9,10 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>home </h1>
+    <h1>bienvenu dans  votre espace  </h1>
     <p>page d'acceuil </p>
-    
+    <div class="mb-3">
+        Welcome you are logged in as {{ app.user.username }},<button><a href="{{ path('app_logout') }}">Logout</a></button> 
+    </div>
 </div>
 {% endblock %}
