@@ -3,5 +3,8 @@
 {% block title %}{{ movie.title }}{% endblock %}
 
 {% block body %}
-<h1>{{ movie.title }}</h1>
+<div class="wrapper">
+    <h1>{{ movie.title }}</h1>
+    <span>{{ movie.year }}</span>
+</div>
 {% endblock %}

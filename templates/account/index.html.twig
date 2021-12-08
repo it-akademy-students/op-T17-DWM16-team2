@@ -2,7 +2,9 @@
 {% block title %}Mon compte{% endblock %}
 {% block body %}
 {% if app.user %}
+<div class="wrapper">
     <h1>Bonjour, {{ user.firstname }}</h1>
     <span>Compte créé le {{ user.joindate|date("d/m/Y") }}</span>
+</div>
 {% endif %}
 {% endblock %}
