@@ -36,7 +36,7 @@ class HomeController extends AbstractController
         ];
 
         $popularMovies = [];
-        foreach($fakeDb as $key => $movie) {
+        foreach($fakeDb as $movie) {
             // array_push($popularMovies, [
             //     'id' => $databaseId,
             //     $callApiService->getMovieData($movie['imDb'])
