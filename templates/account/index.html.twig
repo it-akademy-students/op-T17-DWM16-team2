@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mon compte{% endblock %}
+{% block body %}
+{% if app.user %}
+    <h1>Espace compte de {{ app.user.username }}</h1>
+{% endif %}
+{% endblock %}
