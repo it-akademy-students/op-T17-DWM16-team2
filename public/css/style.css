@@ -55,6 +55,7 @@ footer {
     flex-direction: column;
     justify-content: flex-end;
     padding: 30px 100px;
+    background-color: #F9F9F9;
 }
 
 /* INDEX */
@@ -62,7 +63,7 @@ footer {
 .index__banner {
     height: 500px;
     padding: 50px;
-    background-color: grey;
+    background-color: #ededed;
     display: flex;
     flex-direction: column;
     justify-content: center;
