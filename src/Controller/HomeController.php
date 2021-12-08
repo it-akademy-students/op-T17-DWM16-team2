@@ -38,12 +38,12 @@ class HomeController extends AbstractController
         $popularMovies = [];
         foreach($fakeDb as $movie) {
             // array_push($popularMovies, [
-            //     'id' => $databaseId,
+            //     'id' => 1,
             //     $callApiService->getMovieData($movie['imDb'])
             // ]);
             array_push($popularMovies, [
                 'id' => $movie['id'],
-                'ApiResponse' => [
+                0 => [
                     'title' => 'Inception',
                     'year' => 2021,
                     'plotLocal' => 'Dom Cobb est un voleur expérimenté, le meilleur dans l\'art dangereux de l\'extraction, voler les secrets les plus intimes enfouis au plus profond du subconscient durant une phase de rêve, lorsque l\'esprit est le plus vulnérable. Les capacités de Cobb ont fait des envieux dans le monde tourmenté de l\'espionnage industriel alors qu\'il devient fugitif en perdant tout ce qu\'il a un jour aimé. Une chance de se racheter lui est alors offerte. Une ultime mission grâce à laquelle il pourrait retrouver sa vie passée mais uniquement s\'il parvient à accomplir l\'impossible inception.',

@@ -11,6 +11,16 @@ a {
     color: inherit;
 }
 
+.error-message {
+    background-color: #e74c3c;
+    padding: 20px;
+    color: white;
+    width: 90%;
+    margin: auto;
+    border-radius: 30px;
+    margin-top: 30px;
+}
+
 /* NABVAR */
 
 .nav-bar {
@@ -55,7 +65,8 @@ footer {
     flex-direction: column;
     justify-content: flex-end;
     padding: 30px 100px;
-    background-color: #F9F9F9;
+    background-color: #181818;
+    color: white;
 }
 
 /* INDEX */
