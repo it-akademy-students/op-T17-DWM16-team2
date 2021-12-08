@@ -18,7 +18,7 @@ class Movie
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $imdb_id;
 
@@ -27,12 +27,12 @@ class Movie
         return $this->id;
     }
 
-    public function getImdbId(): ?int
+    public function getImdbId(): ?string
     {
         return $this->imdb_id;
     }
 
-    public function setImdbId(int $imdb_id): self
+    public function setImdbId(string $imdb_id): self
     {
         $this->imdb_id = $imdb_id;
 
