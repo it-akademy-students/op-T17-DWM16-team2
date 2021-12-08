@@ -17,8 +17,8 @@
         <nav class="nav-bar">
             <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo Movie Town"></a>
             <ul>
-                <li><a href="login">Se connecter</a></li>
-                <li><a href="register" class="button-register">Créer un compte</a></li>
+                <li><a href=" {{ path('app_login')}}">Se connecter</a></li>
+                <li><a href="{{ path('app_register')}}" class="button-register">Créer un compte</a></li>
             </ul>
         </nav>
         {% block body %}{% endblock %}
