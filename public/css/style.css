@@ -79,6 +79,9 @@ footer {
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    color: white;
+    background-image: url(https://i.imgur.com/HJfwzdC.jpeg);
+    background-size: cover;
 }
 
 .index__banner > h1 {
