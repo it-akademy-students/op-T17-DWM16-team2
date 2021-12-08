@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Cette adresse email est déjà utilisée.")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -36,6 +36,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $last_name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $first_name;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $birth_date;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $join_date;
 
     public function getId(): ?int
     {
@@ -124,5 +144,53 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->last_name;
+    }
+
+    public function setLastname(string $last_name): self
+    {
+        $this->last_name = $last_name;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->first_name;
+    }
+
+    public function setFirstname(string $first_name): self
+    {
+        $this->first_name = $first_name;
+
+        return $this;
+    }
+
+    public function getBirthDate(): ?\DateTimeInterface
+    {
+        return $this->birth_date;
+    }
+
+    public function setBirthDate(\DateTimeInterface $birth_date): self
+    {
+        $this->birth_date = $birth_date;
+
+        return $this;
+    }
+
+    public function getJoinDate(): ?\DateTimeInterface
+    {
+        return $this->join_date;
+    }
+
+    public function setJoinDate(\DateTimeInterface $join_date): self
+    {
+        $this->join_date = $join_date;
+
+        return $this;
     }
 }
