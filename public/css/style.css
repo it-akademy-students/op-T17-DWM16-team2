@@ -62,7 +62,7 @@ footer {
 .index__banner {
     height: 500px;
     padding: 50px;
-    background-color: grey;
+    background-color: #ededed;
     display: flex;
     flex-direction: column;
     justify-content: center;
