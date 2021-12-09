@@ -14,7 +14,7 @@
                 <i class="fas fa-star"></i>
                 <span>{{ movie.0.imDbRating }}</span>
                 <p>{{ movie.0.plotLocal }}</p>
-                <a href="#" class="button button-add-cart"><i class="fas fa-shopping-cart"></i>Louer en HD {{ movie.movie.price }}€</a>
+                <a href="{{ path('cart_add', {'id' : movie.movie.id})}}" class="button button-add-cart"><i class="fas fa-shopping-cart"></i>Louer en HD {{ movie.movie.price }}€</a>
                 {% if app.user and movie.movie.isFavoritedByUser(app.user) %}
                     <a href="{{ path('movie_favorite', {'id': movie.movie.id}) }}" class="button button-favorite"><i class="fas fa-heart"></i><span>Retirer des favoris</span></a>
                 {% else %}
