@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Movie;
-<<<<<<< HEAD
 use App\Entity\MovieFavorite;
 use App\Repository\MovieFavoriteRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -13,14 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\CallApiService;
 use Doctrine\Persistence\ObjectManager;
-=======
-use App\Service\CallApiService;
-use App\Repository\MovieRepository;
-use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
->>>>>>> 846121ff733d08d485430b23e0817ebda9616403
 
 class MovieController extends AbstractController
 {
@@ -51,7 +42,6 @@ class MovieController extends AbstractController
             'movie' => $movieData,
         ]);
     }
-<<<<<<< HEAD
 
     #[Route('/movie/{id}/favorite', name: 'movie_favorite')]
     public function favorite(Movie $movie, EntityManagerInterface $entityManager, MovieFavoriteRepository $FavoriteRepo): Response
@@ -92,8 +82,4 @@ class MovieController extends AbstractController
             'isFavorited' => true
         ]);
     }
-=======
-       
-    
->>>>>>> 846121ff733d08d485430b23e0817ebda9616403
 }
