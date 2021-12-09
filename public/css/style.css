@@ -65,21 +65,26 @@ a {
     align-items: center;
 }
 
-.nav-bar > a {
+.nav-bar__left {
     height: 80%;
+    display: flex;
 }
 
-.nav-bar > a > img {
+.nav-bar__left > a > img {
     height: 100%;
 }
 
-.nav-bar > ul {
+.nav-bar__right {
+    width: 400px;
+}
+
+.nav-bar-list {
     list-style: none;
     margin: 0;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 300px;
+    padding: 0;
 }
 
 .button-register {
