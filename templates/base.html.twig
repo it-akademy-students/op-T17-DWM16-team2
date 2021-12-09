@@ -19,10 +19,10 @@
             <ul>
                 {% if app.user %}
                     <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
-                    <li><a href="{{ path('account') }}" class="button-register">Mon compte</a></li>
+                    <li><a href="{{ path('account') }}" class="button button-register">Mon compte</a></li>
                 {% else %}
                     <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                    <li><a href="{{ path('app_register') }}" class="button-register">Créer un compte</a></li>
+                    <li><a href="{{ path('app_register') }}" class="button button-register">Créer un compte</a></li>
                 {% endif %}
             </ul>
         </nav>

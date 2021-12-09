@@ -14,7 +14,10 @@
                 <i class="fas fa-star"></i>
                 <span>{{ movie.0.imDbRating }}</span>
                 <p>{{ movie.0.plotLocal }}</p>
-                <button>Louer en HD {{ movie.movie.price }}€</button>
+                <a href="#" class="button button-add-cart">Louer en HD {{ movie.movie.price }}€</a>
+                {% if app.user %}
+                    <a href="#" class="button button-add-favorite"><i class="far fa-heart"></i> Ajouter en favoris</a>
+                {% endif %}
             </div>
         </div>
     </div>
