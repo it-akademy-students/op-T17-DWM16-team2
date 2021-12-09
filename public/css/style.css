@@ -12,6 +12,10 @@ html, body {
     color: white;
 }
 
+.wrapper > h1 {
+    margin-top: 0;
+}
+
 .card {
     background-color: #1c1c1c;
     border-radius: 10px;
