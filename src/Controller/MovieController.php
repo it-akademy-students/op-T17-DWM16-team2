@@ -3,15 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Movie;
+use App\Service\CallApiService;
+use App\Repository\MovieRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Service\CallApiService;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MovieController extends AbstractController
 {
     #[Route('/movie/{id}', name: 'movie')]
+    
     public function index(ManagerRegistry $doctrine, int $id, CallApiService $callApiService): Response
     {
         $movie = $doctrine->getRepository(Movie::class)->find($id);
@@ -37,4 +39,6 @@ class MovieController extends AbstractController
             'movie' => $movieData,
         ]);
     }
+       
+    
 }

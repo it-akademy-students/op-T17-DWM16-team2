@@ -17,6 +17,7 @@
         <nav class="nav-bar">
             <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo Movie Town"></a>
             <ul>
+                <li><a href="{{  path('cart_index')}}">Panier</a></li>
                 {% if app.user %}
                     <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
                     <li><a href="{{ path('account') }}" class="button-register">Mon compte</a></li>

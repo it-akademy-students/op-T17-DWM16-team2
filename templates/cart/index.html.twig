@@ -9,12 +9,49 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/BALDE/Desktop/projetsymfony/movietown/src/Controller/CartController.php'|file_link(0) }}">src/Controller/CartController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/BALDE/Desktop/projetsymfony/movietown/templates/cart/index.html.twig'|file_link(0) }}">templates/cart/index.html.twig</a></code></li>
-    </ul>
+    <h1>Panier </h1>
 </div>
+
+
+{% if items | length > 0 %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Movie</th>
+                <th>prix</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.movie.imdbId}}</td>
+                    <td>{{ item.movie.price}}</td>
+                    <td>{{ item.quantity}}</td>
+                    <td>{{ item.movie.price * item.quantity}}</td>
+                    <td>
+                        <a href="{{ path('cart_remove' , {'id' : item.movie.id})}}">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td> Total :</td>
+                <td>{{ total }}</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+{% else %}
+    <p>Surprise, c'est vide !</p>
+{% endif %}
+
+
+
+
 {% endblock %}

@@ -14,7 +14,7 @@
                 <i class="fas fa-star"></i>
                 <span>{{ movie.0.imDbRating }}</span>
                 <p>{{ movie.0.plotLocal }}</p>
-                <button>Louer en HD {{ movie.movie.price }}€</button>
+                <a  href="{{ path('cart_add', {'id' : movie.movie.id})}}">Louer en HD {{ movie.movie.price }}€ </a>
             </div>
         </div>
     </div>
