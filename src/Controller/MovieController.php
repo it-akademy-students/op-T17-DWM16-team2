@@ -3,11 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Movie;
+use App\Entity\MovieFavorite;
+use App\Repository\MovieFavoriteRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\CallApiService;
+use Doctrine\Persistence\ObjectManager;
 
 class MovieController extends AbstractController
 {
@@ -35,6 +39,48 @@ class MovieController extends AbstractController
         
         return $this->render('movie/index.html.twig', [
             'movie' => $movieData,
+        ]);
+    }
+
+    #[Route('/movie/{id}/favorite', name: 'movie_favorite')]
+    public function favorite(Movie $movie, EntityManagerInterface $entityManager, MovieFavoriteRepository $FavoriteRepo): Response
+    {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->json([
+                'status' => 'unauthorized',
+                'message' => 'Utilisateur non connecté.'
+            ]);
+        }
+
+        if ($movie->isFavoritedByUser($user)) {
+            $favorite = $FavoriteRepo->findOneBy([
+                'movie' => $movie,
+                'user' => $user
+            ]);
+            $entityManager->remove($favorite);
+            $entityManager->flush();
+
+            return $this->json([
+                'status' => 'success',
+                'message' => 'Film enlevé des favoris.',
+                'likes' => $FavoriteRepo->count(['movie' => $movie])
+            ]);
+        }
+
+        $favorite = new MovieFavorite();
+        $favorite->setMovie($movie);
+        $favorite->setUser($user);
+        $favorite->setDate(new \DateTime(date('Y-m-d H:i:s')));
+        
+        $entityManager->persist($favorite);
+        $entityManager->flush();
+
+        return $this->json([
+            'status' => 'success',
+            'message' => 'Film ajouté en favoris.',
+            'likes' => $FavoriteRepo->count(['movie' => $movie])
         ]);
     }
 }

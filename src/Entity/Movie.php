@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use App\Repository\MovieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * @ORM\Entity(repositoryClass=MovieRepository::class)
@@ -96,5 +98,13 @@ class Movie
         }
 
         return $this;
+    }
+
+    public function isFavoritedByUser(User $user): bool
+    {
+        foreach ($this->favorites as $favorite) {
+            if ($favorite->getUser() === $user) return true;
+        }
+        return false;
     }
 }
