@@ -56,8 +56,10 @@ class CartController extends AbstractController
         }
         
         $session->set('panier', $panier);
+       
 
-        return $this->redirectToRoute("home");
+        
+        return $this->redirectToRoute("cart_index");
 
         //dd($session->get('panier'));
 

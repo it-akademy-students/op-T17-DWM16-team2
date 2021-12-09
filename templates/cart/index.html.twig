@@ -28,12 +28,17 @@
             {% for item in items %}
                 <tr>
                     <td>{{ item.movie.imdbId}}</td>
-                    <td>{{ item.movie.price}}</td>
+                    <td>{{ item.movie.price}} € </td>
                     <td>{{ item.quantity}}</td>
                     <td>{{ item.movie.price * item.quantity}}</td>
                     <td>
                         <a href="{{ path('cart_remove' , {'id' : item.movie.id})}}">
                             <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('cart_add' , {'id' : item.movie.id})}}">
+                            <i class="fas fa-cart-plus"></i>
                         </a>
                     </td>
                 </tr>
@@ -42,7 +47,7 @@
         <tfoot>
             <tr>
                 <td> Total :</td>
-                <td>{{ total }}</td>
+                <td>{{ total }} € </td>
                 <td></td>
             </tr>
         </tfoot>
