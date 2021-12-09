@@ -16,9 +16,9 @@
                 <p>{{ movie.0.plotLocal }}</p>
                 <a href="#" class="button button-add-cart">Louer en HD {{ movie.movie.price }}€</a>
                 {% if app.user and movie.movie.isFavoritedByUser(app.user) %}
-                    <a href="#" class="button button-favorite"><i class="fas fa-heart"></i> Retirer des favoris</a>
+                    <a href="{{ path('movie_favorite', {'id': movie.movie.id}) }}" class="button button-favorite"><i class="fas fa-heart"></i><span>Retirer des favoris</span></a>
                 {% else %}
-                    <a href="#" class="button button-favorite"><i class="far fa-heart"></i> Ajouter en favoris</a>
+                    <a href="{{ path('movie_favorite', {'id': movie.movie.id}) }}" class="button button-favorite"><i class="far fa-heart"></i><span>Ajouter en favoris</span></a>
                 {% endif %}
             </div>
         </div>

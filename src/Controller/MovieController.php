@@ -51,7 +51,7 @@ class MovieController extends AbstractController
             return $this->json([
                 'status' => 'unauthorized',
                 'message' => 'Utilisateur non connecté.'
-            ]);
+            ], 403);
         }
 
         if ($movie->isFavoritedByUser($user)) {
@@ -64,8 +64,7 @@ class MovieController extends AbstractController
 
             return $this->json([
                 'status' => 'success',
-                'message' => 'Film enlevé des favoris.',
-                'likes' => $FavoriteRepo->count(['movie' => $movie])
+                'isFavorited' => false
             ]);
         }
 
@@ -79,8 +78,7 @@ class MovieController extends AbstractController
 
         return $this->json([
             'status' => 'success',
-            'message' => 'Film ajouté en favoris.',
-            'likes' => $FavoriteRepo->count(['movie' => $movie])
+            'isFavorited' => true
         ]);
     }
 }
