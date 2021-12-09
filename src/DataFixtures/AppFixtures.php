@@ -26,6 +26,7 @@ class AppFixtures extends Fixture
         foreach ($imdb_ids as $imdb_id) {
             $movie = new Movie();
             $movie->setImdbId($imdb_id);
+            $movie->setPrice(9.99);
             $manager->persist($movie);
         }
 
