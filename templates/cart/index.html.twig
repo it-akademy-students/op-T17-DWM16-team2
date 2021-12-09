@@ -21,7 +21,7 @@
                 <th>prix</th>
                 <th>Quantité</th>
                 <th>Total</th>
-                <th></th>
+                <th> </th>
             </tr>
         </thead>
         <tbody>
@@ -30,7 +30,7 @@
                     <td>{{ item.movie.imdbId}}</td>
                     <td>{{ item.movie.price}} € </td>
                     <td>{{ item.quantity}}</td>
-                    <td>{{ item.movie.price * item.quantity}}</td>
+                    <td>{{ item.movie.price * item.quantity}} €</td>
                     <td>
                         <a href="{{ path('cart_remove' , {'id' : item.movie.id})}}">
                             <i class="fas fa-trash"></i>
@@ -39,6 +39,11 @@
                     <td>
                         <a href="{{ path('cart_add' , {'id' : item.movie.id})}}">
                             <i class="fas fa-cart-plus"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('cart_delete' , {'id' : item.movie.id})}}">
+                            <i class="fas fa-cart-arrow-down"></i>
                         </a>
                     </td>
                 </tr>
