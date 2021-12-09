@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Movie;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,40 +12,20 @@ use App\Service\CallApiService;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(CallApiService $callApiService): Response
+    public function index(ManagerRegistry $doctrine, CallApiService $callApiService): Response
     {
-        $fakeDb = [
-            [
-                'id' => 1,
-                'imDb' => 'tt6468322'
-            ],
-            [
-                'id' => 2,
-                'imDb' => 'tt0816692'
-            ],
-            [
-                'id' => 3,
-                'imDb' => 'tt0386676'
-            ],
-            [
-                'id' => 4,
-                'imDb' => 'tt0386676'
-            ],
-            [
-                'id' => 5,
-                'imDb' => 'tt0386676'
-            ]
-        ];
-
+        // Prend les x derniers films
+        $movies = $doctrine->getRepository(Movie::class)->findBy([], ['id' => 'ASC'], 4);
         $popularMovies = [];
-        foreach($fakeDb as $movie) {
+
+        foreach($movies as $movie) {
             // array_push($popularMovies, [
-            //     'id' => $databaseId,
-            //     $callApiService->getMovieData($movie['imDb'])
+            //     'id' => $movie->getId(),
+            //     $callApiService->getMovieData($movie->getImdbId())
             // ]);
             array_push($popularMovies, [
-                'id' => $movie['id'],
-                'ApiResponse' => [
+                'id' => $movie->getId(),
+                0 => [
                     'title' => 'Inception',
                     'year' => 2021,
                     'plotLocal' => 'Dom Cobb est un voleur expérimenté, le meilleur dans l\'art dangereux de l\'extraction, voler les secrets les plus intimes enfouis au plus profond du subconscient durant une phase de rêve, lorsque l\'esprit est le plus vulnérable. Les capacités de Cobb ont fait des envieux dans le monde tourmenté de l\'espionnage industriel alors qu\'il devient fugitif en perdant tout ce qu\'il a un jour aimé. Une chance de se racheter lui est alors offerte. Une ultime mission grâce à laquelle il pourrait retrouver sa vie passée mais uniquement s\'il parvient à accomplir l\'impossible inception.',
