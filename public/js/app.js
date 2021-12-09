@@ -11,10 +11,10 @@ function addFavoriteMovie(e) {
         .then(function (data) {
             if (data.isFavorited) {
                 icon.classList.replace('far', 'fas')
-                htmlText.innerHTML = 'Retirer de mes favoris'
+                htmlText.innerHTML = 'Retirer des favoris'
             } else {
                 icon.classList.replace('fas', 'far')
-                htmlText.innerHTML = 'Ajouter dans mes favoris'
+                htmlText.innerHTML = 'Ajouter en favoris'
             }
         })
         .catch(function (error) {
