@@ -4,7 +4,10 @@
 
 {% block body %}
 <div class="wrapper">
-    <h1>{{ movie.title }}</h1>
-    <span>{{ movie.year }}</span>
+    <div class="card card-big">
+        <img src="{{ movie.image }}" alt="Affiche film">
+        <h1>{{ movie.title }}</h1>
+        <span>{{ movie.year }}</span>
+    </div>
 </div>
 {% endblock %}

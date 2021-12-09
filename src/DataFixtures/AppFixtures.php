@@ -15,7 +15,12 @@ class AppFixtures extends Fixture
             'tt4154796',
             'tt4633694',
             'tt8108198',
-            'tt2380307'
+            'tt2380307',
+            'tt3170832',
+            'tt2582802',
+            'tt1954470',
+            'tt1255953',
+            'tt1375666'
         ];
 
         foreach ($imdb_ids as $imdb_id) {

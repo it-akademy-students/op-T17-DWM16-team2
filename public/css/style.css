@@ -12,6 +12,20 @@ html, body {
     color: white;
 }
 
+.card {
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px 0px #000000;
+}
+
+.card-big {
+    padding: 80px;
+}
+
+.card-big > h1 {
+    margin-top: 0;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -73,6 +87,7 @@ footer {
     padding: 30px 100px;
     background-color: #1c1c1c;
     color: white;
+    box-shadow: 0px 0px 3px 0px #000000;
 }
 
 /* INDEX */
@@ -86,7 +101,7 @@ footer {
     justify-content: center;
     text-align: center;
     color: white;
-    background-image: url(https://i.imgur.com/HJfwzdC.jpeg);
+    background-image: url(https://i.ibb.co/F5ww3gs/image.png);
     background-size: cover;
 }
 
@@ -104,6 +119,7 @@ footer {
     padding: 30px 100px;
     background-color: #101010;
     color: white;
+    box-shadow: 0px 0px 2px 0px #000000;
 }
 
 .index__second-section > h1 {
@@ -118,9 +134,6 @@ footer {
 .popular-movies__movie {
     margin: 20px;
     width: 100%;
-    background-color: #1c1c1c;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px 0px #000000;
     position: relative;
     top: 0;
     transition: top ease 0.5s;
@@ -137,7 +150,6 @@ footer {
 
 .popular-movies__movie > img {
     width: 100%;
-    object-fit: cover;
     border-radius: 10px 10px 0 0;
 }
 
