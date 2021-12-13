@@ -47,10 +47,24 @@ a {
     padding: 10px 20px;
     border-radius: 30px;
     display: inline-block;
+    border: none;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .button > .far:not(:only-child), .button > .fas:not(:only-child) {
     margin-right: 10px;
+}
+
+.button-black {
+    background-color: black;
+    color: white;
+}
+
+.button-white {
+    background-color: white;
+    color: black;
 }
 
 .error-message {
@@ -64,6 +78,36 @@ a {
 
 .primary-color {
     color: #fecc02;
+}
+
+/* FORM */
+
+.form-card {
+    padding: 50px 80px;
+    width: 50%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.form-group > label {
+    margin-bottom: 10px;
+}
+
+input[type=text], input[type=password], input[type=email] {
+    border-radius: 20px;
+    background-color: #2c2c2c;
+    border: solid 2px #282828;
+    padding: 15px;
+    color: white;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
 }
 
 /* MOVIE CARD */
@@ -142,11 +186,6 @@ a {
     justify-content: space-around;
     align-items: center;
     padding: 0;
-}
-
-.button-register {
-    background-color: black;
-    color: white;
 }
 
 /* FOOTER */
@@ -238,15 +277,6 @@ footer {
 
 .movie-card__movie-info-right > h1 {
     margin-top: 0;
-}
-
-.button-add-cart {
-    background-color: black;
-}
-
-.button-favorite {
-    background-color: white;
-    color: black;
 }
 
 /* CART */

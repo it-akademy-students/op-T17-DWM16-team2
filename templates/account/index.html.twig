@@ -20,12 +20,12 @@
                         <i class="fas fa-star primary-color"></i>
                         <span>{{ movie.0.imDbRating }}</span>
                         <div class="buttons-movie-card">
-                            <a href="{{ path('cart_add', {'id' : movie.movie.id}) }}" class="button button-add-cart"><i class="fas fa-shopping-cart"></i></a>
+                            <a href="{{ path('cart_add', {'id' : movie.movie.id}) }}" class="button button-black"><i class="fas fa-shopping-cart"></i></a>
                             {% if app.user %}
                                 {% if movie.movie.isFavoritedByUser(app.user) %}
-                                    <a href="{{ path('movie_favorite', {'id': movie.movie.id}) }}" class="button button-favorite"><i class="fas fa-heart"></i></a>
+                                    <a href="{{ path('movie_favorite', {'id': movie.movie.id}) }}" class="button button-white js-button-favorite"><i class="fas fa-heart"></i></a>
                                 {% else %}
-                                    <a href="{{ path('movie_favorite', {'id': movie.movie.id}) }}" class="button button-favorite"><i class="far fa-heart"></i></a>
+                                    <a href="{{ path('movie_favorite', {'id': movie.movie.id}) }}" class="button button-white js-button-favorite"><i class="far fa-heart"></i></a>
                                 {% endif %}
                             {% endif %}
                         </div>

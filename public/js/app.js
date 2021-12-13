@@ -26,6 +26,6 @@ function addFavoriteMovie(e) {
         })
 }
 
-document.querySelectorAll('a.button-favorite').forEach(function (link) {
+document.querySelectorAll('.js-button-favorite').forEach(function (link) {
     link.addEventListener('click', addFavoriteMovie)
 })
