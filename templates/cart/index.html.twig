@@ -4,11 +4,12 @@
 
 {% block body %}
 <div class="wrapper">
+    <h1>Panier</h1>
 {% if items | length > 0 %}
     <table class="table">
         <thead>
             <tr>
-                <th>Movie</th>
+                <th>Film</th>
                 <th>Prix</th>
                 <th>Quantité</th>
                 <th>Total</th>
@@ -16,27 +17,27 @@
         </thead>
         <tbody>
             {% for item in items %}
-            <tr>
-                <td>{{ item.movie.imdbId}}</td>
-                <td>{{ item.movie.price}} € </td>
-                <td>{{ item.quantity}}</td>
-                <td>{{ item.movie.price * item.quantity}} €</td>
-                <td>
-                    <a href="{{ path('cart_remove' , {'id' : item.movie.id})}}">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                </td>
-                <td>
-                    <a href="{{ path('cart_add' , {'id' : item.movie.id})}}">
-                        <i class="fas fa-cart-plus"></i>
-                    </a>
-                </td>
-                <td>
-                    <a href="{{ path('cart_delete' , {'id' : item.movie.id})}}">
-                        <i class="fas fa-cart-arrow-down"></i>
-                    </a>
-                </td>
-            </tr>
+                <tr>
+                    <td>{{ item.movie.imdbId}}</td>
+                    <td>{{ item.movie.price}} € </td>
+                    <td>{{ item.quantity}}</td>
+                    <td>{{ item.movie.price * item.quantity}} €</td>
+                    <td>
+                        <a href="{{ path('cart_remove' , {'id' : item.movie.id})}}">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('cart_add' , {'id' : item.movie.id})}}">
+                            <i class="fas fa-cart-plus"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('cart_delete' , {'id' : item.movie.id})}}">
+                            <i class="fas fa-cart-arrow-down"></i>
+                        </a>
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
         <tfoot>
@@ -47,7 +48,7 @@
         </tfoot>
     </table>
 {% else %}
-<p>Surprise, c'est vide !</p>
+    <p>Surprise, c'est vide !</p>
 {% endif %}
 </div>
 {% endblock %}

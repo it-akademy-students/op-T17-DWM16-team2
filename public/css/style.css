@@ -249,4 +249,13 @@ footer {
     color: black;
 }
 
-/* ACCOUNT */
+/* CART */
+
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 20px;
+}
