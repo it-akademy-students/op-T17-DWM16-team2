@@ -38,6 +38,7 @@ a {
 .button {
     padding: 10px 20px;
     border-radius: 30px;
+    display: inline-block;
 }
 
 .button > .far:not(:only-child), .button > .fas:not(:only-child) {
@@ -53,19 +54,49 @@ a {
     border-radius: 30px;
 }
 
-.movie-year {
-    font-size: 13px;
+.primary-color {
     color: #fecc02;
 }
 
-.fa-star, .fa-film {
-    color: #fecc02;
+/* MOVIE CARD */
+
+.movie-year {
+    font-size: 13px;
+}
+
+.popular-movies__movie:hover, .small-movie:hover {
+    top: -10px;
+}
+
+.poster-movie-card {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.movies-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.small-movie {
+    margin: 20px;
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+    width: 200px;
+}
+
+.buttons-movie-card {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-around;
 }
 
 /* NABVAR */
 
 .nav-bar {
-    height: 100px;
+    height: 80px;
     padding: 0 80px;
     background-color: #fecc02;
     display: flex;
@@ -164,15 +195,6 @@ footer {
     max-width: 300px;
 }
 
-.popular-movies__movie:hover, .all-movies__movie:hover {
-    top: -10px;
-}
-
-.popular-movies__movie > img, .all-movies__movie > img {
-    width: 100%;
-    border-radius: 10px 10px 0 0;
-}
-
 .movie__info {
     padding: 16px 30px;
 }
@@ -193,6 +215,8 @@ footer {
 
 .movie-card__movie-info-left {
     width: 30%;
+    max-width: 350px;
+    min-width: 200px;
 }
 
 .movie-card__movie-info-left > img {
@@ -219,18 +243,4 @@ footer {
     color: black;
 }
 
-/* ALL MOVIES */
-
-.all-movies {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.all-movies__movie {
-    margin: 20px;
-    position: relative;
-    top: 0;
-    transition: top ease 0.5s;
-    max-width: 200px;
-}
+/* ACCOUNT */
