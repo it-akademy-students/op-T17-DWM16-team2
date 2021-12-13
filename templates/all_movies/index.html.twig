@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="wrapper">
-    <div class="movies-wrap">
+    <div class="movies wrap center">
         {% for movie in movies %}
             <div class="small-movie card">
                 <a href="{{ path('movie', {'id': movie.movie.id}) }}">

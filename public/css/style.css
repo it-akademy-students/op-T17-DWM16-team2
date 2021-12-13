@@ -16,6 +16,14 @@ html, body {
     margin-top: 0;
 }
 
+.wrap {
+    flex-wrap: wrap;
+}
+
+.center {
+    justify-content: center;
+}
+
 .card {
     background-color: #1c1c1c;
     border-radius: 10px;
@@ -73,10 +81,8 @@ a {
     border-radius: 10px 10px 0 0;
 }
 
-.movies-wrap {
+.movies {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
 }
 
 .small-movie {
@@ -91,6 +97,18 @@ a {
     margin-top: 18px;
     display: flex;
     justify-content: space-around;
+}
+
+.movie__info {
+    padding: 16px 30px;
+}
+
+.movie__info > h3 {
+    margin-top: 0;
+}
+
+.movie__info > p {
+    margin-bottom: 0;
 }
 
 /* NABVAR */
@@ -193,18 +211,6 @@ footer {
     top: 0;
     transition: top ease 0.5s;
     max-width: 300px;
-}
-
-.movie__info {
-    padding: 16px 30px;
-}
-
-.movie__info > h3 {
-    margin-top: 0;
-}
-
-.movie__info > p {
-    margin-bottom: 0;
 }
 
 /* MOVIE */
