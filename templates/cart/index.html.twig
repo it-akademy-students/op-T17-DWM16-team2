@@ -18,35 +18,30 @@
         <tbody>
             {% for item in items %}
                 <tr>
-                    <td>{{ item.movie.imdbId}}</td>
-                    <td>{{ item.movie.price}} € </td>
+                    <td>{{ item.movie.0.title}}</td>
+                    <td>{{ item.movie.movie.price}} € </td>
                     <td>{{ item.quantity}}</td>
-                    <td>{{ item.movie.price * item.quantity}} €</td>
+                    <td>{{ item.movie.movie.price * item.quantity}} €</td>
                     <td>
-                        <a href="{{ path('cart_remove' , {'id' : item.movie.id})}}">
-                            <i class="fas fa-trash"></i>
+                        <a href="{{ path('cart_add' , {'id' : item.movie.movie.id})}}">
+                            <i class="fas fa-plus primary-color"></i>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ path('cart_add' , {'id' : item.movie.id})}}">
-                            <i class="fas fa-cart-plus"></i>
+                        <a href="{{ path('cart_delete' , {'id' : item.movie.movie.id})}}">
+                            <i class="fas fa-minus primary-color"></i>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ path('cart_delete' , {'id' : item.movie.id})}}">
-                            <i class="fas fa-cart-arrow-down"></i>
+                        <a href="{{ path('cart_remove' , {'id' : item.movie.movie.id})}}">
+                            <i class="fas fa-trash primary-color"></i>
                         </a>
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
-        <tfoot>
-            <tr>
-                <td>Total :</td>
-                <td>{{ total }}€</td>
-            </tr>
-        </tfoot>
     </table>
+    <span>Total : {{ total }} €</span>
 {% else %}
     <p>Surprise, c'est vide !</p>
 {% endif %}

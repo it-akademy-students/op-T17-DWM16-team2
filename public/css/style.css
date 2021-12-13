@@ -252,10 +252,12 @@ footer {
 /* CART */
 
 table, th, td {
-    border: 1px solid white;
+    border: 5px solid #101010;
     border-collapse: collapse;
+    background-color: #1c1c1c;
 }
 
 td, th {
     padding: 20px;
+    text-align: center;
 }
