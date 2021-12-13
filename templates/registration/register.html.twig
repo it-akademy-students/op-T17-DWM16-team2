@@ -4,15 +4,15 @@
 
 {% block body %}
 <div class="wrapper">
-    <h1>Créer un compte</h1>
+    <h1 class="text-center">Créer un compte</h1>
     {{ form_start(registrationForm, { 'attr': { 'class': 'card form-card' } }) }}
         {{ form_row(registrationForm.lastName) }}
         {{ form_row(registrationForm.firstName) }}
-        {{ form_row(registrationForm.email, { 'attr': { 'class': 'salut' } }) }}
+        {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword) }}
         {{ form_row(registrationForm.birthDate) }}
         {{ form_row(registrationForm.agreeTerms) }}
-        <button class="button button-register" type="submit" class="btn">Créer mon compte</button>
+        <button class="button button-white" type="submit" class="btn">Créer mon compte</button>
     {{ form_end(registrationForm) }}
 </div>
 {% endblock %}

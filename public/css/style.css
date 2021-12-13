@@ -24,6 +24,10 @@ html, body {
     justify-content: center;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .card {
     background-color: #1c1c1c;
     border-radius: 10px;
@@ -87,6 +91,8 @@ a {
     width: 50%;
     max-width: 600px;
     margin: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .form-group {
