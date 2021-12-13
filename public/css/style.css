@@ -40,6 +40,10 @@ a {
     border-radius: 30px;
 }
 
+.button > .far:not(:only-child), .button > .fas:not(:only-child) {
+    margin-right: 10px;
+}
+
 .error-message {
     background-color: #e74c3c;
     padding: 20px;
@@ -160,17 +164,25 @@ footer {
     max-width: 300px;
 }
 
-.popular-movies__movie:hover {
+.popular-movies__movie:hover, .all-movies__movie:hover {
     top: -10px;
 }
 
-.popular-movies__movie > img {
+.popular-movies__movie > img, .all-movies__movie > img {
     width: 100%;
     border-radius: 10px 10px 0 0;
 }
 
 .movie__info {
-    padding: 10px 30px;
+    padding: 16px 30px;
+}
+
+.movie__info > h3 {
+    margin-top: 0;
+}
+
+.movie__info > p {
+    margin-bottom: 0;
 }
 
 /* MOVIE */
@@ -207,6 +219,18 @@ footer {
     color: black;
 }
 
-.button > .far, .button > .fas {
-    margin-right: 10px;
+/* ALL MOVIES */
+
+.all-movies {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.all-movies__movie {
+    margin: 20px;
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+    max-width: 200px;
 }
