@@ -11,12 +11,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\CallApiService;
-use Doctrine\Persistence\ObjectManager;
 
 class MovieController extends AbstractController
 {
     #[Route('/movie/{id}', name: 'movie')]
-    
     public function index(ManagerRegistry $doctrine, int $id, CallApiService $callApiService): Response
     {
         $movie = $doctrine->getRepository(Movie::class)->find($id);
@@ -44,8 +42,18 @@ class MovieController extends AbstractController
     }
 
     #[Route('/movie/{id}/favorite', name: 'movie_favorite')]
-    public function favorite(Movie $movie, EntityManagerInterface $entityManager, MovieFavoriteRepository $FavoriteRepo): Response
+    public function favorite(ManagerRegistry $doctrine, int $id, EntityManagerInterface $entityManager, MovieFavoriteRepository $FavoriteRepo): Response
     {
+        $movie = $doctrine->getRepository(Movie::class)->find($id);
+
+        if (!$movie) {
+            // Si le film n'est pas trouvé
+            return $this->json([
+                'status' => 'not_found',
+                'message' => 'Film inexistant.'
+            ], 404);
+        }
+
         $user = $this->getUser();
 
         if (!$user) {

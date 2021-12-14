@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -20,14 +21,17 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', TextType::class, [
-                'label' => 'Adresse email'
+            ->add('email', EmailType::class, [
+                'label' => 'Adresse email',
+                'row_attr' => ['class' => 'form-group']
             ])
             ->add('lastName', TextType::class, [
-                'label' => 'Nom'
+                'label' => 'Nom',
+                'row_attr' => ['class' => 'form-group']
             ])
             ->add('firstName', TextType::class, [
-                'label' => 'Prénom'
+                'label' => 'Prénom',
+                'row_attr' => ['class' => 'form-group']
             ])
             ->add('birthDate', BirthdayType::class, [
                 'label' => 'Date de naissance',
@@ -36,7 +40,8 @@ class RegistrationFormType extends AbstractType
                     'year' => 'Année',
                     'month' => 'Mois',
                     'day' => 'Jour'
-                ]
+                ],
+                'row_attr' => ['class' => 'form-group']
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'label' => 'J\'accepte les conditions générales',
@@ -45,14 +50,24 @@ class RegistrationFormType extends AbstractType
                     new IsTrue([
                         'message' => 'Veuillez accepter les conditions générales.',
                     ]),
-                ],
+                ]
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe ne correspondent pas.',
                 'required' => true,
-                'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmer le mot de passe'],
+                'first_options'  => [
+                    'label' => 'Mot de passe',
+                    'row_attr' => [
+                        'class' => 'form-group'
+                    ]
+                ],
+                'second_options' => [
+                    'label' => 'Confirmer le mot de passe',
+                    'row_attr' => [
+                        'class' => 'form-group'
+                    ]
+                ],
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
@@ -65,7 +80,7 @@ class RegistrationFormType extends AbstractType
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
-                ],
+                ]
             ])
         ;
     }

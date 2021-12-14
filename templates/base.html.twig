@@ -21,7 +21,7 @@
                 </a>
                 <ul class="nav-bar-list">
                     <li>
-                        <a href="#">Tous les films</a>
+                        <a href="{{ path('all_movies') }}">Tous les films</a>
                     </li>
                 </ul>
             </div>
@@ -30,10 +30,10 @@
                     <li><a href="{{  path('cart_index')}}">Panier</a></li>
                     {% if app.user %}
                         <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
-                        <li><a href="{{ path('account') }}" class="button button-register">Mon compte</a></li>
+                        <li><a href="{{ path('account') }}" class="button button-black">Mon compte</a></li>
                     {% else %}
                         <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                        <li><a href="{{ path('app_register') }}" class="button button-register">Créer un compte</a></li>
+                        <li><a href="{{ path('app_register') }}" class="button button-black">Créer un compte</a></li>
                     {% endif %}
                 </ul>
             </div>
