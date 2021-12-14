@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Movie Town | {% block title %}{% endblock %}</title>
+        <title>{% block title %}{% endblock %} | Movie Town</title>
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <script src="https://kit.fontawesome.com/dd4bc6b830.js" crossorigin="anonymous"></script>
         <script src="{{ asset('js/app.js') }}" async></script>
@@ -15,16 +15,28 @@
     </head>
     <body>
         <nav class="nav-bar">
-            <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo Movie Town"></a>
-            <ul>
-                {% if app.user %}
-                    <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
-                    <li><a href="{{ path('account') }}" class="button-register">Mon compte</a></li>
-                {% else %}
-                    <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                    <li><a href="{{ path('app_register') }}" class="button-register">Créer un compte</a></li>
-                {% endif %}
-            </ul>
+            <div class="nav-bar__left">
+                <a href="{{ path('home') }}">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo Movie Town">
+                </a>
+                <ul class="nav-bar-list">
+                    <li>
+                        <a href="{{ path('all_movies') }}">Tous les films</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-bar__right">
+                <ul class="nav-bar-list">
+                    <li><a href="{{  path('cart_index')}}">Panier</a></li>
+                    {% if app.user %}
+                        <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                        <li><a href="{{ path('account') }}" class="button button-black">Mon compte</a></li>
+                    {% else %}
+                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                        <li><a href="{{ path('app_register') }}" class="button button-black">Créer un compte</a></li>
+                    {% endif %}
+                </ul>
+            </div>
         </nav>
         {% block body %}{% endblock %}
     </body>

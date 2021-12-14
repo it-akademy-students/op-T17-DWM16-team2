@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ movie.0.title }}{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <div class="card card-big">
+        <div class="movie-card">
+            <div class="movie-card__movie-info-left">
+                <img src="{{ movie.0.image }}" alt="Affiche film">
+            </div>
+            <div class="movie-card__movie-info-right">
+                <h1>{{ movie.0.title }} <span class="movie-year primary-color">{{ movie.0.year }}</span></h1>
+                <i class="fas fa-star primary-color"></i>
+                <span>{{ movie.0.imDbRating }}</span>
+                <p>{{ movie.0.plotLocal }}</p>
+                <a href="{{ path('cart_add', {'id' : movie.movie.id}) }}" class="button button-black"><i class="fas fa-shopping-cart"></i><span>Ajouter au panier {{ movie.movie.price }} €</span></a>
+                {% if app.user %}
+                    {% if movie.movie.isFavoritedByUser(app.user) %}
+                        <a href="{{ path('movie_favorite', {'id': movie.movie.id}) }}" class="button button-white js-button-favorite"><i class="fas fa-heart"></i><span>Retirer des favoris</span></a>
+                    {% else %}
+                        <a href="{{ path('movie_favorite', {'id': movie.movie.id}) }}" class="button button-white js-button-favorite"><i class="far fa-heart"></i><span>Ajouter en favoris</span></a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

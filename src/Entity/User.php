@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -56,6 +58,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="datetime")
      */
     private $join_date;
+
+    /**
+     * @ORM\OneToMany(targetEntity=MovieFavorite::class, mappedBy="user")
+     */
+    private $movieFavorites;
+
+    public function __construct()
+    {
+        $this->movieFavorites = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -190,6 +202,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setJoinDate(\DateTimeInterface $join_date): self
     {
         $this->join_date = $join_date;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MovieFavorite[]
+     */
+    public function getMovieFavorites(): Collection
+    {
+        return $this->movieFavorites;
+    }
+
+    public function addMovieFavorite(MovieFavorite $movieFavorite): self
+    {
+        if (!$this->movieFavorites->contains($movieFavorite)) {
+            $this->movieFavorites[] = $movieFavorite;
+            $movieFavorite->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMovieFavorite(MovieFavorite $movieFavorite): self
+    {
+        if ($this->movieFavorites->removeElement($movieFavorite)) {
+            // set the owning side to null (unless already changed)
+            if ($movieFavorite->getUser() === $this) {
+                $movieFavorite->setUser(null);
+            }
+        }
 
         return $this;
     }

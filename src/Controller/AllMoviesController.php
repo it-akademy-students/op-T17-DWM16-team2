@@ -2,21 +2,28 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\Movie;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
 
-class AccountController extends AbstractController
+class AllMoviesController extends AbstractController
 {
-    #[Route('/account', name: 'account')]
-    public function index(): Response
+    #[Route('/all/movies', name: 'all_movies')]
+    public function index(ManagerRegistry $doctrine): Response
     {
-        $user = $this->getUser();
-        $favoriteMovies = [];
-        foreach ($user->getMovieFavorites()->toArray() as $favoriteMovie) {
-            array_push($favoriteMovies, [
-                'movie' => $favoriteMovie->getMovie(),
+        $movieRepo = $doctrine->getRepository(Movie::class);
+        $movies = $movieRepo->findAll();
+        $allMovies = [];
+
+        foreach($movies as $movie) {
+            // array_push($popularMovies, [
+            //     'id' => $movie->getId(),
+            //     $callApiService->getMovieData($movie->getImdbId())
+            // ]);
+            array_push($allMovies, [
+                'movie' => $movie,
                 0 => [
                     'title' => 'Inception',
                     'year' => 2021,
@@ -27,9 +34,8 @@ class AccountController extends AbstractController
             ]);
         }
         
-        return $this->render('account/index.html.twig', [
-            'user' => $user,
-            'favorites' => $favoriteMovies,
+        return $this->render('all_movies/index.html.twig', [
+            'movies' => $allMovies
         ]);
     }
 }
