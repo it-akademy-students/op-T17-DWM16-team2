@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use App\Service\CartService;
 
 class PaymentController extends AbstractController
 {
@@ -19,36 +20,31 @@ class PaymentController extends AbstractController
     }
 
     #[Route('/checkout', name: 'checkout')]
-    public function checkout(SessionInterface $session): Response
+    public function checkout(SessionInterface $session, CartService $cart): Response
     {
+        $cartItems = $cart->getCart();
 
-        dd($session->get('panier', []));
+        // dd($cartItems);
 
-
+        $products = [];
+        foreach ($cartItems['items'] as $item) {
+            $products[] = [
+                'price_data' => [
+                    'currency' => 'eur',
+                    'product_data' => [
+                        'name' => $item['movie'][0]['title'],
+                    ],
+                    'unit_amount' => $item['movie']['movie']->getPrice() * 100,
+                ],
+                'quantity' => $item['quantity'],
+            ];
+        }
+        
         \Stripe\Stripe::setApiKey('sk_test_51K6Z6RH14CdCbTSSb959s24mEvJob5RrRSNP11YAmvrSWFha9AZJzbRyE0qw9DoGDkrLlOuuTUnucgDzQGePXdqM00QoLXF6H1');
 
         $session = \Stripe\Checkout\Session::create([
             'line_items' => [
-                [
-                    'price_data' => [
-                        'currency' => 'eur',
-                        'product_data' => [
-                            'name' => 'T-shirt',
-                        ],
-                        'unit_amount' => 999,
-                    ],
-                    'quantity' => 1,
-                ],
-                [
-                    'price_data' => [
-                        'currency' => 'eur',
-                        'product_data' => [
-                            'name' => 'T-shirt',
-                        ],
-                        'unit_amount' => 999,
-                    ],
-                    'quantity' => 1,
-                ]
+                $products
             ],
             'mode' => 'payment',
             'success_url' => $this->generateUrl('success_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
