@@ -39,7 +39,7 @@ class CartController extends AbstractController
         ]);
     }
 
-    
+    //pour ajouter un film au panier 
     #[Route('/cart/add/{id}' , name:'cart_add')]
 
     public function add($id, SessionInterface $session) {
@@ -66,7 +66,7 @@ class CartController extends AbstractController
     }
 
 
-
+    // pour supprimer la totalité du film ajouté  
     #[Route('/cart/remove/{id}' , name:'cart_remove')]
 
     public function remove($id, SessionInterface $session){
@@ -83,7 +83,7 @@ class CartController extends AbstractController
 
     }
 
-
+    // pour supprimer 1 par 1 
     #[Route('/cart/delete/{id}' , name:'cart_delete')]
 
     public function delete($id, SessionInterface $session) {
