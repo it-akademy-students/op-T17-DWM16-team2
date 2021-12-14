@@ -12,19 +12,9 @@ use App\Service\CartService;
 class PaymentController extends AbstractController
 {
     #[Route('/payment', name: 'payment')]
-    public function index(): Response
-    {
-        return $this->render('payment/index.html.twig', [
-            'controller_name' => 'PaymentController',
-        ]);
-    }
-
-    #[Route('/checkout', name: 'checkout')]
-    public function checkout(SessionInterface $session, CartService $cart): Response
+    public function payment(SessionInterface $session, CartService $cart): Response
     {
         $cartItems = $cart->getCart();
-
-        // dd($cartItems);
 
         $products = [];
         foreach ($cartItems['items'] as $item) {
@@ -48,7 +38,7 @@ class PaymentController extends AbstractController
             ],
             'mode' => 'payment',
             'success_url' => $this->generateUrl('success_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
-            'cancel_url' => $this->generateUrl('cancel_url', [], UrlGeneratorInterface::ABSOLUTE_URL)
+            'cancel_url' => $this->generateUrl('cart_index', [], UrlGeneratorInterface::ABSOLUTE_URL)
         ]);
 
         return $this->redirect($session->url, 303);
@@ -58,11 +48,5 @@ class PaymentController extends AbstractController
     public function success(): Response
     {
         return $this->render('payment/success.html.twig');
-    }
-
-    #[Route('/cancel', name: 'cancel_url')]
-    public function cancel(): Response
-    {
-        return $this->render('payment/cancel.html.twig');
     }
 }
