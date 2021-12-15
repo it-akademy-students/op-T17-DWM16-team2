@@ -20,17 +20,19 @@ class CartService
 
         $panierWithData = [];
 
-        foreach ($panier as $id => $quantity) {
-            $panierWithData[] = [
-                'movie' => [
-                    'movie' => $this->movieRepository->find($id),
-                    0 => [
-                        'title' => 'Inception',
-                        'image' => 'https://imdb-api.com/images/original/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_Ratio0.6762_AL_.jpg'
-                    ]
-                ],
-                'quantity' => $quantity
-            ];
+        if ($panier !== null) {
+            foreach ($panier as $id => $quantity) {
+                $panierWithData[] = [
+                    'movie' => [
+                        'movie' => $this->movieRepository->find($id),
+                        0 => [
+                            'title' => 'Inception',
+                            'image' => 'https://imdb-api.com/images/original/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_Ratio0.6762_AL_.jpg'
+                        ]
+                    ],
+                    'quantity' => $quantity
+                ];
+            }
         }
 
         $total = 0;
