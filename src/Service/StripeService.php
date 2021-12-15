@@ -29,7 +29,7 @@ class StripeService
         ]);
     }
 
-    public function payment($amount, $currency, $description, Array $stripeParameter)
+    public function payment(Array $stripeParameter)
     {
         \Stripe\Stripe::setApiKey($this->privateKey);
         $paymentIntent = null;
@@ -47,8 +47,8 @@ class StripeService
         return $paymentIntent;
     }
 
-    public function stripe(Array $stripeParameter, Movie $movie)
+    public function stripe(Array $stripeParameter)
     {
-        return $this->payment($movie->getPrice() * 100, 'eur', $movie->getImdbId(), $stripeParameter);
+        return $this->payment($stripeParameter);
     }
 }

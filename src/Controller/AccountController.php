@@ -13,6 +13,7 @@ class AccountController extends AbstractController
     public function index(): Response
     {
         $user = $this->getUser();
+
         $favoriteMovies = [];
         foreach ($user->getMovieFavorites()->toArray() as $favoriteMovie) {
             array_push($favoriteMovies, [
@@ -26,10 +27,23 @@ class AccountController extends AbstractController
                 ]
             ]);
         }
+
+        $orders = [];
+        // dd($user->getOrders()->toArray());
+        foreach ($user->getOrders()->toArray() as $order) {
+            $orders[] = [
+                'order' => $order,
+                0 => [
+                    'title' => 'Inception',
+                    'image' => 'https://imdb-api.com/images/original/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_Ratio0.6762_AL_.jpg'
+                ]
+            ];
+        }
         
         return $this->render('account/index.html.twig', [
             'user' => $user,
             'favorites' => $favoriteMovies,
+            'orders' => $orders
         ]);
     }
 }

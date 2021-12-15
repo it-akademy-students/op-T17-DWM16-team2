@@ -30,11 +30,11 @@
 
 {% block body %}
 <div class="wrapper">
-    <form id="payment-form" class="card form-card" action="{{ path('checkout_pay', {'id': movie.id}) }}" method="post">
+    <form id="payment-form" class="card form-card" action="{{ path('checkout_pay') }}" method="post">
         <div id="card-elements"></div>
         <script src="https://js.stripe.com/v3"></script>
         <div id="card-errors" role="alert"></div>
-        <button class="button button-white">Payer {{ movie.price }} €</button>
+        <button class="button button-white">Payer {{ cart.total }} €</button>
     </form>
 </div>
 {% endblock %}
@@ -49,7 +49,6 @@
 
     var stripe = Stripe(stripeToken)
     var elements = stripe.elements()
-    var subscription = '{{ movie.id }}'
     var clientSecret = '{{ intentSecret }}'
     var cardholderName = '{{ app.user.firstname }} {{ app.user.lastname }}'
     var cardholderEmail = '{{ app.user.email }}'
@@ -112,14 +111,9 @@
         inputIntentStatus.setAttribute('name', 'stripeIntentStatus')
         inputIntentStatus.setAttribute('value', intent.status)
 
-        inputSubscription.setAttribute('type', 'hidden')
-        inputSubscription.setAttribute('name', 'subscription')
-        inputSubscription.setAttribute('value', subscription)
-
         form.appendChild(inputIntentId)
         form.appendChild(inputIntentPaymentMethod)
         form.appendChild(inputIntentStatus)
-        form.appendChild(inputSubscription)
         form.submit()
     }
 </script>

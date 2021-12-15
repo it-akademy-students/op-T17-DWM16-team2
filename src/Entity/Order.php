@@ -25,8 +25,7 @@ class Order
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Movie::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $movie;
 
@@ -92,12 +91,12 @@ class Order
         return $this;
     }
 
-    public function getMovie(): ?Movie
+    public function getMovie(): ?string
     {
         return $this->movie;
     }
 
-    public function setMovie(?Movie $movie): self
+    public function setMovie(string $movie): self
     {
         $this->movie = $movie;
 

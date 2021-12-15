@@ -33,16 +33,16 @@ class MovieManager
             ->findAll();
     }
 
-    public function intentSecret(Movie $movie)
+    public function intentSecret()
     {
-        $intent = $this->stripeService->paymentIntent($movie);
+        $intent = $this->stripeService->paymentIntent();
         return $intent['client_secret'] ?? null;
     }
 
-    public function stripe(array $stripeParameter, Movie $movie)
+    public function stripe(array $stripeParameter, $movies)
     {
         $resource = null;
-        $data = $this->stripeService->stripe($stripeParameter, $movie);
+        $data = $this->stripeService->stripe($stripeParameter, $movies);
 
         if ($data) {
             $resource = [
@@ -57,12 +57,12 @@ class MovieManager
         return $resource;
     }
 
-    public function createOrder(array $resource, Movie $movie, User $user)
+    public function createOrder(array $resource, $movies, User $user, $price)
     {
         $order = new Order();
         $order->setUser($user)
-            ->setMovie($movie)
-            ->setPrice($movie->getPrice())
+            ->setMovie($movies)
+            ->setPrice($price)
             ->setReference(uniqid())
             ->setBrandStripe($resource['stripeBrand'])
             ->setLast4Stripe($resource['stripeLast4'])
