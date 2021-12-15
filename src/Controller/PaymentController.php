@@ -30,7 +30,7 @@ class PaymentController extends AbstractController
             ];
         }
         
-        \Stripe\Stripe::setApiKey('sk_test_51K6Z6RH14CdCbTSSb959s24mEvJob5RrRSNP11YAmvrSWFha9AZJzbRyE0qw9DoGDkrLlOuuTUnucgDzQGePXdqM00QoLXF6H1');
+        \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRETE_KEY_TEST']);
 
         $session = \Stripe\Checkout\Session::create([
             'line_items' => [

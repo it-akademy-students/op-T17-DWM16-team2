@@ -11,7 +11,7 @@ use App\Service\CartService;
 class CartController extends AbstractController
 {
     #[Route('/cart', name: 'cart_index')]
-    public function index(cartService $cartService): Response
+    public function index(CartService $cartService): Response
     {
         return $this->render('cart/index.html.twig', $cartService->getCart());
     }

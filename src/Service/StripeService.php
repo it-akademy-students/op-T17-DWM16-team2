@@ -2,25 +2,28 @@
 
 namespace App\Service;
 use App\Entity\Movie;
+use App\Service\CartService;
 
 class StripeService
 {
     private $privateKey;
+    private $cartService;
 
-    public function __construct()
+    public function __construct(CartService $cartService)
     {
         if ($_ENV['APP_ENV'] === 'dev') {
             $this->privateKey = $_ENV['STRIPE_SECRETE_KEY_TEST'];
         } else {
-            $this->privateKey = $_ENV['STRIPE_SECRETE_KEY_TEST'];
+            $this->privateKey = $_ENV['STRIPE_SECRETE_KEY_LIVE'];
         }
+        $this->cartService = $cartService;
     }
 
-    public function paymentIntent(Movie $movie)
+    public function paymentIntent()
     {
         \Stripe\Stripe::setApiKey($this->privateKey);
         return \Stripe\PaymentIntent::create([
-            'amount' => $movie->getPrice() * 100,
+            'amount' => $this->cartService->getCart()['total'] * 100,
             'currency' => 'eur',
             'payment_method_types' => ['card']
         ]);
@@ -36,7 +39,7 @@ class StripeService
         }
 
         if ($stripeParameter['stripeIntentStatus'] === 'succeeded') {
-            //TODO
+            // TODO
         } else {
             $paymentIntent->cancel();
         }

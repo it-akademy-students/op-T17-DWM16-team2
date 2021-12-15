@@ -6,6 +6,7 @@ use App\Entity\Movie;
 use App\Entity\User;
 use App\Entity\Order;
 use App\Service\StripeService;
+use App\Service\CartService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
