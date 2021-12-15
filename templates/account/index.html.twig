@@ -44,7 +44,8 @@
                 <thead>
                     <tr>
                         <th>Référence</th>
-                        <th>Date</th>
+                        <th>Date de commande</th>
+                        <th>Fin de location</th>
                         <th>Total</th>
                     </tr>
                 </thead>
@@ -52,7 +53,8 @@
                     {% for order in orders %}
                         <tr>
                             <td><a href="#">{{ order.order.reference }}</a></td>
-                            <td>{{ order.order.createdAt|date("d/m/Y") }}</td>
+                            <td>{{ order.order.createdAt|date("d/m/Y h:i") }}</td>
+                            <td>{{ order.order.createdAt|date_modify('+30 days')|date("d/m/Y h:i") }}</td>
                             <td>{{ order.order.price }} €</td>
                         </tr>
                     {% endfor %}
