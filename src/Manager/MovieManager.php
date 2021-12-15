@@ -45,7 +45,7 @@ class MovieManager
 
         if ($data) {
             $resource = [
-                'stripeBand' => $data['charges']['data'][0]['payment_method_details']['card']['brand'],
+                'stripeBrand' => $data['charges']['data'][0]['payment_method_details']['card']['brand'],
                 'stripeLast4' => $data['charges']['data'][0]['payment_method_details']['card']['last4'],
                 'stripeId' => $data['charges']['data'][0]['id'],
                 'stripeStatus' => $data['charges']['data'][0]['token'],
@@ -62,6 +62,15 @@ class MovieManager
         $order->setUser($user)
             ->setMovie($movie)
             ->setPrice($movie->getPrice())
-            ->setReference(uniqid());
+            ->setReference(uniqid())
+            ->setBrandStripe($resource['stripeBrand'])
+            ->setLast4Stripe($resource['stripeLast4'])
+            ->setIdChargeStripe($resource['stripeId'])
+            ->setStatusStripe($resource['stripeStatus'])
+            ->setStripeToken($resource['stripeToken'])
+            ->setUpdatedAt(new \DateTime())
+            ->setCreatedAt(new \DateTime());
+        $this->em->persist($order);
+        $this->em->flush();
     }
 }

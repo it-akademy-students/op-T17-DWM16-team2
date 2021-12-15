@@ -9,9 +9,6 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
     </head>
     <body>
         <nav class="nav-bar">
@@ -40,6 +37,9 @@
         </nav>
         {% block body %}{% endblock %}
     </body>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
     <footer>
         <span>© 2021 by Movie Town, Inc.</span>
     </footer>

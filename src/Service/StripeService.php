@@ -10,18 +10,18 @@ class StripeService
     public function __construct()
     {
         if ($_ENV['APP_ENV'] === 'dev') {
-            $this->privateKey = $_ENV['STRIPE_PRIVATE_KEY_TEST'];
+            $this->privateKey = $_ENV['STRIPE_SECRETE_KEY_TEST'];
         } else {
-            $this->privateKey = $_ENV['STRIPE_PRIVATE_KEY_LIVE'];
+            $this->privateKey = $_ENV['STRIPE_SECRETE_KEY_TEST'];
         }
     }
 
     public function paymentIntent(Movie $movie)
     {
         \Stripe\Stripe::setApiKey($this->privateKey);
-        return \Stripe\paymentIntent::create([
+        return \Stripe\PaymentIntent::create([
             'amount' => $movie->getPrice() * 100,
-            'current' => 'eur',
+            'currency' => 'eur',
             'payment_method_types' => ['card']
         ]);
     }
@@ -35,7 +35,7 @@ class StripeService
             $paymentIntent = \Stripe\PaymentIntent::retrieve($stripeParameter['stripeIntentId']);
         }
 
-        if ($stripeParameter['stripeIntentId'] === 'succeeded') {
+        if ($stripeParameter['stripeIntentStatus'] === 'succeeded') {
             //TODO
         } else {
             $paymentIntent->cancel();
