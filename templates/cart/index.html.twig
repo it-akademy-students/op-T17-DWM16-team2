@@ -43,6 +43,7 @@
     </table>
     <span>Total : {{ total }} €</span>
     <a class="button button-white" href="{{ path('payment') }}"><i class="far fa-credit-card"></i><span>Passer la commande</span></a>
+    <a class="button button-white" href="{{ path('checkout') }}">Checkout</a>
 {% else %}
     <p>Surprise, c'est vide !</p>
 {% endif %}
