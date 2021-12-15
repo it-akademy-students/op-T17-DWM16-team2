@@ -119,4 +119,6 @@ class CartController extends AbstractController
         //dd($session->get('panier'));
 
     }
+
+    
 }
