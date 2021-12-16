@@ -15,9 +15,13 @@ class CallApiService
 
     public function getMovieData($id): array
     {
+        // $response = $this->client->request(
+        //     'GET',
+        //     'https://imdb-api.com/fr/API/Title/k_3j0zj3u0/' . $id
+        // );
         $response = $this->client->request(
             'GET',
-            'https://imdb-api.com/fr/API/Title/k_3j0zj3u0/' . $id
+            'https://www.omdbapi.com/?i=' . $id . '&apikey=12ea9e7b'
         );
         return $response->toArray();
     }

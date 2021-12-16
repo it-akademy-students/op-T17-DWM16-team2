@@ -84,6 +84,26 @@ a {
     color: #fecc02;
 }
 
+table {
+    width: 100%;
+}
+
+table, th, td {
+    border: 5px solid #1c1c1c;
+    border-collapse: collapse;
+    background-color: #262626;
+}
+
+td, th {
+    padding: 20px;
+    text-align: center;
+}
+
+td > img {
+    width: 100px;
+    border-radius: 5px;   
+}
+
 /* FORM */
 
 .form-card {
@@ -93,6 +113,11 @@ a {
     margin: auto;
     display: flex;
     flex-direction: column;
+}
+
+.form-card > h1 {
+    margin-top: 0;
+    text-align: center;
 }
 
 .form-group {
@@ -287,13 +312,46 @@ footer {
 
 /* CART */
 
-table, th, td {
-    border: 5px solid #101010;
-    border-collapse: collapse;
-    background-color: #1c1c1c;
+.cart {
+    width: 80%;
+    margin: auto;
 }
 
-td, th {
-    padding: 20px;
-    text-align: center;
+.cart > h1 {
+    margin-top: 0;
+}
+
+.cart-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* CHECKOUT */
+
+.StripeElement {
+    box-sizing: border-box;
+    height: 40px;
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+    margin-bottom: 20px;
+}
+
+.StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+    border-color: #e74c3c;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
 }

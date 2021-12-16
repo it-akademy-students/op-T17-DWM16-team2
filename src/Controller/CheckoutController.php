@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Manager\MovieManager;
-use App\Entity\Movie;
 use App\Service\CartService;
 
 class CheckoutController extends AbstractController
@@ -16,8 +15,9 @@ class CheckoutController extends AbstractController
     #[Route('/checkout', name: 'checkout')]
     public function index(CartService $cartService, MovieManager $movieManager): Response
     {
-        if (!$this->getUser()) {
-            return $this->redirectToRoute('app_login');
+        // Si l'utilisateur n'est pas connecté ou que le panier est vide, alors on le redirige
+        if(!$this->getUser() || count($cartService->getCart()['items']) < 1) {
+            return $this->redirectToRoute('cart_index');
         }
 
         return $this->render('checkout/index.html.twig', [
@@ -31,7 +31,11 @@ class CheckoutController extends AbstractController
     {
         $user = $this->getUser();
 
-        $movies = [];
+        // Si l'utilisateur n'est pas connecté ou que le panier est vide, alors on le redirige
+        if(!$user || count($cartService->getCart()['items']) < 1) {
+            return $this->redirectToRoute('cart_index');
+        }
+        
         foreach ($cartService->getCart()['items'] as $item) {
             $movies[] = $item['movie']['movie']->getId();
         }
@@ -42,10 +46,11 @@ class CheckoutController extends AbstractController
             $resource = $movieManager->stripe($_POST, $movies);
 
             if (null !== $resource) {
-                $movieManager->createOrder($resource, $movies, $user, $cartService->getCart()['total']);
+                $order = $movieManager->createOrder($resource, $movies, $user, $cartService->getCart()['total']);
                 $session->remove('panier');
-                return $this->render('payment/success.html.twig', [
-                    'cart' => $cartService
+                return $this->render('checkout/success.html.twig', [
+                    'cart' => $cartService,
+                    'order' => $order
                 ]);
             }
         }

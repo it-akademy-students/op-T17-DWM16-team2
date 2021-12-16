@@ -22,15 +22,15 @@ class CartController extends AbstractController
         //avec session interface je n'ai plus besoin de la request 
         // $session = $request->getSession();
 
-        $panier = $session->get('panier', []);
+        $cart = $session->get('cart');
 
-        if (!empty($panier[$id])) {
-            $panier[$id]++;
+        if (!empty($cart[$id])) {
+            $cart[$id]++;
         } else {
-            $panier[$id] = 1;
+            $cart[$id] = 1;
         }
 
-        $session->set('panier', $panier);
+        $session->set('cart', $cart);
 
         return $this->redirectToRoute("cart_index");
     }
@@ -38,13 +38,13 @@ class CartController extends AbstractController
     #[Route('/cart/remove/{id}', name: 'cart_remove')]
     public function remove($id, SessionInterface $session)
     {
-        $panier = $session->get('panier', []);
+        $cart = $session->get('cart');
 
-        if (!empty($panier[$id])) {
-            unset($panier[$id]);
+        if (!empty($cart[$id])) {
+            unset($cart[$id]);
         }
 
-        $session->set('panier', $panier);
+        $session->set('cart', $cart);
 
         return $this->redirectToRoute("cart_index");
     }
@@ -56,17 +56,17 @@ class CartController extends AbstractController
         //avec session interface je n'ai plus besoin de la request 
         // $session = $request->getSession();
 
-        $panier = $session->get('panier', []);
+        $cart = $session->get('cart');
 
-        if (!empty($panier[$id])) {
-            if ($panier[$id] > 1) {
-                $panier[$id]--;
+        if (!empty($cart[$id])) {
+            if ($cart[$id] > 1) {
+                $cart[$id]--;
             } else {
-                unset($panier[$id]);
+                unset($cart[$id]);
             }
         }
 
-        $session->set('panier', $panier);
+        $session->set('cart', $cart);
 
         return $this->redirectToRoute("cart_index");
     }

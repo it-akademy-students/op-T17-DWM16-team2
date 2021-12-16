@@ -71,7 +71,10 @@ class MovieManager
             ->setStripeToken($resource['stripeToken'])
             ->setUpdatedAt(new \DateTime())
             ->setCreatedAt(new \DateTime());
+            
         $this->em->persist($order);
         $this->em->flush();
+
+        return $order;
     }
 }
