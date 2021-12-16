@@ -141,6 +141,12 @@ input[type=text], input[type=password], input[type=email] {
     outline: none;
 }
 
+/* REGISTER */
+
+.button-register {
+    margin-top: 30px;
+}
+
 /* MOVIE CARD */
 
 .movie-year {
