@@ -19,9 +19,6 @@ class CartController extends AbstractController
     #[Route('/cart/add/{id}', name: 'cart_add')]
     public function add($id, SessionInterface $session)
     {
-        //avec session interface je n'ai plus besoin de la request 
-        // $session = $request->getSession();
-
         $cart = $session->get('cart');
 
         if (!empty($cart[$id])) {
@@ -35,8 +32,8 @@ class CartController extends AbstractController
         return $this->redirectToRoute("cart_index");
     }
 
-    #[Route('/cart/remove/{id}', name: 'cart_remove')]
-    public function remove($id, SessionInterface $session)
+    #[Route('/cart/delete/{id}', name: 'cart_delete')]
+    public function delete($id, SessionInterface $session)
     {
         $cart = $session->get('cart');
 
@@ -49,13 +46,9 @@ class CartController extends AbstractController
         return $this->redirectToRoute("cart_index");
     }
 
-    #[Route('/cart/delete/{id}', name: 'cart_delete')]
-    public function delete($id, SessionInterface $session)
+    #[Route('/cart/remove/{id}', name: 'cart_remove')]
+    public function remove($id, SessionInterface $session)
     {
-
-        //avec session interface je n'ai plus besoin de la request 
-        // $session = $request->getSession();
-
         $cart = $session->get('cart');
 
         if (!empty($cart[$id])) {

@@ -16,7 +16,7 @@ class CheckoutController extends AbstractController
     public function index(CartService $cartService, MovieManager $movieManager): Response
     {
         // Si l'utilisateur n'est pas connecté ou que le panier est vide, alors on le redirige
-        if(!$this->getUser() || count($cartService->getCart()['items']) < 1) {
+        if (!$this->getUser() || count($cartService->getCart()['items']) < 1) {
             return $this->redirectToRoute('cart_index');
         }
 
@@ -32,12 +32,12 @@ class CheckoutController extends AbstractController
         $user = $this->getUser();
 
         // Si l'utilisateur n'est pas connecté ou que le panier est vide, alors on le redirige
-        if(!$user || count($cartService->getCart()['items']) < 1) {
+        if (!$user || count($cartService->getCart()['items']) < 1) {
             return $this->redirectToRoute('cart_index');
         }
-        
+
         foreach ($cartService->getCart()['items'] as $item) {
-            $movies[] = $item['movie']['movie']->getId();
+            $movies[] = $item['movie']['db']->getId();
         }
 
         $movies = implode(',', $movies);
@@ -47,9 +47,8 @@ class CheckoutController extends AbstractController
 
             if (null !== $resource) {
                 $order = $movieManager->createOrder($resource, $movies, $user, $cartService->getCart()['total']);
-                $session->remove('panier');
+                $session->remove('cart');
                 return $this->render('checkout/success.html.twig', [
-                    'cart' => $cartService,
                     'order' => $order
                 ]);
             }

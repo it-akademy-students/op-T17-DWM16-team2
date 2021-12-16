@@ -84,7 +84,7 @@ a {
     color: #fecc02;
 }
 
-table {
+.table-fullsize {
     width: 100%;
 }
 
@@ -354,4 +354,10 @@ footer {
 
 .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
+}
+
+/* ORDER */
+
+.table-order {
+    margin: 20px 0;
 }
