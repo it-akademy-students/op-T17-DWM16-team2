@@ -37,7 +37,7 @@ class RegistrationController extends AbstractController
                 ->setLastname($form->get('lastName')->getData())
                 ->setFirstname($form->get('firstName')->getData())
                 ->setBirthDate($form->get('birthDate')->getData())
-                ->setjoinDate(new \DateTime(date('Y-m-d H:i:s')));
+                ->setjoinDate(new \DateTime());
 
             $entityManager->persist($user);
             $entityManager->flush();

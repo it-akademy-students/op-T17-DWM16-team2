@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .StripeElement {
+        box-sizing: border-box;
+        height: 40px;
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-color: white;
+        box-shadow: 0 1px 3px 0 #e6ebf1;
+        -webkit-transition: box-shadow 150ms ease;
+        transition: box-shadow 150ms ease;
+    }
+    .StripeElement--focus {
+        box-shadow: 0 1px 3px 0 #cfd7df;
+    }
+    .StripeElement--invalid {
+        border-color: #e74c3c;
+    }
+    .StripeElement--webkit-autofill {
+        background-color: #fefde5 !important;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <form id="payment-form" class="card form-card" action="{{ path('checkout_pay') }}" method="post">
+        <div id="card-elements"></div>
+        <script src="https://js.stripe.com/v3"></script>
+        <div id="card-errors" role="alert"></div>
+        <button class="button button-white">Payer {{ cart.total }} €</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    {% if app_environnement == 'dev' %}
+        var stripeToken = '{{ stripe_public_key_test }}'
+    {% else %}
+        var stripeToken = 'token_public'
+    {% endif %}
+
+    var stripe = Stripe(stripeToken)
+    var elements = stripe.elements()
+    var clientSecret = '{{ intentSecret }}'
+    var cardholderName = '{{ app.user.firstname }} {{ app.user.lastname }}'
+    var cardholderEmail = '{{ app.user.email }}'
+
+    var customStyle = {
+        base: {
+            fontSize: '16px'
+        }
+    }
+
+    // Monte la form à l'objet Stripe
+    var card = elements.create('card', { style: customStyle })
+    card.mount('#card-elements')
+
+    // Si y'a des messages d'erreur, on les affiche
+    card.addEventListener('change', function (e) {
+        var displayError = document.getElementById('card-errors')
+        if (e.error) {
+            displayError.textContent = e.error.message
+        }
+    })
+
+    var form = document.getElementById('payment-form')
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault()
+        stripe.handleCardPayment(clientSecret, card, {
+            payment_method_data: {
+                billing_details: {
+                    name: cardholderName,
+                    email: cardholderEmail
+                }
+            }
+        }).then((result) => {
+            if (result.error) {
+                // Afficher les erreurs
+            } else if ('paymentIntent' in result) {
+                stripeTokenHandler(result.paymentIntent)
+            }
+        })
+    })
+
+    function stripeTokenHandler(intent) {
+        var form = document.getElementById('payment-form')
+
+        var inputIntentId = document.createElement('input')
+        var inputIntentPaymentMethod = document.createElement('input')
+        var inputIntentStatus = document.createElement('input')
+        var inputSubscription = document.createElement('input')
+
+        inputIntentId.setAttribute('type', 'hidden')
+        inputIntentId.setAttribute('name', 'stripeIntentId')
+        inputIntentId.setAttribute('value', intent.id)
+
+        inputIntentPaymentMethod.setAttribute('type', 'hidden')
+        inputIntentPaymentMethod.setAttribute('name', 'stripeIntentPaymentMethod')
+        inputIntentPaymentMethod.setAttribute('value', intent.payment_method)
+
+        inputIntentStatus.setAttribute('type', 'hidden')
+        inputIntentStatus.setAttribute('name', 'stripeIntentStatus')
+        inputIntentStatus.setAttribute('value', intent.status)
+
+        form.appendChild(inputIntentId)
+        form.appendChild(inputIntentPaymentMethod)
+        form.appendChild(inputIntentStatus)
+        form.submit()
+    }
+</script>
+{% endblock %}

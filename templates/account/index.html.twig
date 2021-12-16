@@ -38,8 +38,31 @@
         </div>
     </div>
     <div class="orders">
-        <h1><i class="fas fa-history primary-color"></i> Mes films loués</h1>
-        <span>Vous n'avez encore jamais effectué de commande.</span>
+        <h1><i class="fas fa-history primary-color"></i> Mes commandes</h1>
+        {% if orders %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Référence</th>
+                        <th>Date de commande</th>
+                        <th>Fin de location</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td><a href="#">{{ order.order.reference }}</a></td>
+                            <td>{{ order.order.createdAt|date("d/m/Y h:i") }}</td>
+                            <td>{{ order.order.createdAt|date_modify('+30 days')|date("d/m/Y h:i") }}</td>
+                            <td>{{ order.order.price }} €</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <span>Vous n'avez encore jamais effectué de commande.</span>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

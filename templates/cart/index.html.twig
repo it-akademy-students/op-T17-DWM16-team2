@@ -42,19 +42,7 @@
         </tbody>
     </table>
     <span>Total : {{ total }} €</span>
-    <div>
-        <form action="" method="POST">
-            <script
-               src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-               data-key="pk_test_51K6aoBK7fs0uaTbkiPtqOaZkGUHBzKbCmsXooShyNYj186JGkzdZljf513YeqEPs7vysSLWcVkPsBU6G1JOeKtBx00wj8RZFRd"
-               data-amount="{{ total * 100 }}  "
-               data-name="Paiement"
-               data-description="test"
-               data-image="{{ asset('images/logo.png') }}"
-               data-locale="auto">
-            </script>
-        </form>
-    </div>
+    <a class="button button-white" href="{{ path('checkout') }}"><i class="far fa-credit-card"></i><span>Passer la commande</span></a>
 {% else %}
     <p>Surprise, c'est vide !</p>
 {% endif %}
