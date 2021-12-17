@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande #{{ order.reference }}{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <div class="card card-big">
+        <h1>Récapitulatif de la commande #{{ order.reference }}</h1>
+        <span>Passée le <span class="primary-color">{{ order.createdAt|date("d/m/Y à h:i") }}</span></span>
+        <span>{{ order.last4Stripe }} <i class="fas fa-credit-card"></i></span>
+        <table class="table-order">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Film</th>
+                    <th>Prix</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie in movies %}
+                    <tr>
+                        <td><img src="{{ movie.0.Poster }}" alt="Affiche du film"></td>
+                        <td><a href="{{ path('movie', {'id': movie.db.id}) }}">{{ movie.0.Title }}</a></td>
+                        <td>{{ movie.db.price }} €</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <span>Prix total : {{ order.price }} €</span>
+    </div>
+</div>
+{% endblock %}

@@ -4,47 +4,55 @@
 
 {% block body %}
 <div class="wrapper">
-    <h1>Panier</h1>
-{% if items | length > 0 %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Film</th>
-                <th>Prix</th>
-                <th>Quantité</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in items %}
-                <tr>
-                    <td>{{ item.movie.0.title}}</td>
-                    <td>{{ item.movie.movie.price}} € </td>
-                    <td>{{ item.quantity}}</td>
-                    <td>{{ item.movie.movie.price * item.quantity}} €</td>
-                    <td>
-                        <a href="{{ path('cart_add' , {'id' : item.movie.movie.id})}}">
-                            <i class="fas fa-plus primary-color"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{{ path('cart_delete' , {'id' : item.movie.movie.id})}}">
-                            <i class="fas fa-minus primary-color"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{{ path('cart_remove' , {'id' : item.movie.movie.id})}}">
-                            <i class="fas fa-trash primary-color"></i>
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <span>Total : {{ total }} €</span>
-    <a class="button button-white" href="{{ path('checkout') }}"><i class="far fa-credit-card"></i><span>Passer la commande</span></a>
-{% else %}
-    <p>Surprise, c'est vide !</p>
-{% endif %}
+    <div class="card card-big">
+        <div class="cart">
+            <h1>Panier</h1>
+            {% if items | length > 0 %}
+                <table class="table-fullsize">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Film</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <td><img src="{{ item.movie.0.Poster }}" alt="Affiche du film"></td>
+                                <td><a href="{{ path('movie', {'id': item.movie.db.id}) }}">{{ item.movie.0.Title}}</a></td>
+                                <td>{{ item.movie.db.price}} €</td>
+                                <td>{{ item.quantity}}</td>
+                                <td>{{ item.movie.db.price * item.quantity}} €</td>
+                                <td>
+                                    <a href="{{ path('cart_add' , {'id' : item.movie.db.id})}}">
+                                        <i class="fas fa-plus primary-color"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('cart_remove' , {'id' : item.movie.db.id})}}">
+                                        <i class="fas fa-minus primary-color"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('cart_delete' , {'id' : item.movie.db.id})}}">
+                                        <i class="fas fa-trash primary-color"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="cart-bottom">
+                    <span>Total : {{ total }} €</span>
+                    <a class="button button-white" href="{{ path('checkout') }}"><i class="far fa-credit-card"></i><span>Passer la commande</span></a>
+                </div>
+            {% else %}
+                <p>Surprise, c'est vide !</p>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}

@@ -19,32 +19,15 @@ class CartController extends AbstractController
     #[Route('/cart/add/{id}', name: 'cart_add')]
     public function add($id, SessionInterface $session)
     {
-        //avec session interface je n'ai plus besoin de la request 
-        // $session = $request->getSession();
+        $cart = $session->get('cart');
 
-        $panier = $session->get('panier', []);
-
-        if (!empty($panier[$id])) {
-            $panier[$id]++;
+        if (!empty($cart[$id])) {
+            $cart[$id]++;
         } else {
-            $panier[$id] = 1;
+            $cart[$id] = 1;
         }
 
-        $session->set('panier', $panier);
-
-        return $this->redirectToRoute("cart_index");
-    }
-
-    #[Route('/cart/remove/{id}', name: 'cart_remove')]
-    public function remove($id, SessionInterface $session)
-    {
-        $panier = $session->get('panier', []);
-
-        if (!empty($panier[$id])) {
-            unset($panier[$id]);
-        }
-
-        $session->set('panier', $panier);
+        $session->set('cart', $cart);
 
         return $this->redirectToRoute("cart_index");
     }
@@ -52,21 +35,31 @@ class CartController extends AbstractController
     #[Route('/cart/delete/{id}', name: 'cart_delete')]
     public function delete($id, SessionInterface $session)
     {
+        $cart = $session->get('cart');
 
-        //avec session interface je n'ai plus besoin de la request 
-        // $session = $request->getSession();
+        if (!empty($cart[$id])) {
+            unset($cart[$id]);
+        }
 
-        $panier = $session->get('panier', []);
+        $session->set('cart', $cart);
 
-        if (!empty($panier[$id])) {
-            if ($panier[$id] > 1) {
-                $panier[$id]--;
+        return $this->redirectToRoute("cart_index");
+    }
+
+    #[Route('/cart/remove/{id}', name: 'cart_remove')]
+    public function remove($id, SessionInterface $session)
+    {
+        $cart = $session->get('cart');
+
+        if (!empty($cart[$id])) {
+            if ($cart[$id] > 1) {
+                $cart[$id]--;
             } else {
-                unset($panier[$id]);
+                unset($cart[$id]);
             }
         }
 
-        $session->set('panier', $panier);
+        $session->set('cart', $cart);
 
         return $this->redirectToRoute("cart_index");
     }
