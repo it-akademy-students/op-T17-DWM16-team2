@@ -16,7 +16,9 @@ class CheckoutController extends AbstractController
     public function index(CartService $cartService, MovieManager $movieManager): Response
     {
         // Si l'utilisateur n'est pas connecté ou que le panier est vide, alors on le redirige
-        if (!$this->getUser() || count($cartService->getCart()['items']) < 1) {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        } else if (count($cartService->getCart()['items']) < 1) {
             return $this->redirectToRoute('cart_index');
         }
 
