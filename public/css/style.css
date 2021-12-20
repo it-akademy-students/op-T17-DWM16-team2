@@ -150,6 +150,7 @@ select {
     margin-right: 10px;
     outline: none;
     border: solid 2px #282828;
+    font-size: inherit;
 }
 
 /* REGISTER */
