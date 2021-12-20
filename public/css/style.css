@@ -148,7 +148,8 @@ select {
     color: white;
     border-radius: 20px;
     margin-right: 10px;
-    text-align: center;
+    outline: none;
+    border: solid 2px #282828;
 }
 
 /* REGISTER */
