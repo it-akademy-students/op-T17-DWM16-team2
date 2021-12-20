@@ -448,3 +448,9 @@ footer img {
 .table-order {
     margin: 20px 0;
 }
+
+/* SUCCESS ORDER */
+
+.success-order-card p {
+    margin: 0 0 20px;
+}
