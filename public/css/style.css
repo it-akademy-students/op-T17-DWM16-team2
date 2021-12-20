@@ -362,6 +362,11 @@ footer {
     background-color: #fefde5 !important;
 }
 
+.card-errors {
+    margin-bottom: 20px;
+    color: #e74c3c;
+}
+
 /* ORDER */
 
 .table-order {
