@@ -23,11 +23,7 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'Adresse email',
-                'row_attr' => ['class' => 'form-group'],'constraints' => [
-                    new IsTrue([
-                        'message' => 'Veuillez entrer une adresse email valide.',
-                    ]),
-                ]
+                'row_attr' => ['class' => 'form-group']
             ])
             ->add('lastName', TextType::class, [
                 'label' => 'Nom',
