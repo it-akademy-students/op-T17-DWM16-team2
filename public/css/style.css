@@ -10,6 +10,7 @@ html, body {
     padding: 50px;
     background-color: #101010;
     color: white;
+    min-height: calc(100vh - 400px);
 }
 
 .wrapper > h1 {
@@ -31,7 +32,7 @@ html, body {
 .card {
     background-color: #1c1c1c;
     border-radius: 10px;
-    box-shadow: 0px 0px 15px 0px #000000;
+    box-shadow: 0px 0px 15px 0px #00000085;
 }
 
 .card-big {
@@ -241,15 +242,43 @@ select {
 /* FOOTER */
 
 footer {
-    height: 300px;
-    text-align: center;
+    height: 250px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    align-items: center;
     padding: 30px 100px;
     background-color: #1c1c1c;
     color: white;
     box-shadow: 0px 0px 3px 0px #000000;
+}
+
+footer img {
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.footer__row-one {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.row-one__block-left, .row-one__block-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.row-one__block-left > a, .row-one__block-right > a {
+    margin-bottom: 20px;
+}
+
+.footer__row-two {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
 }
 
 /* INDEX */
@@ -300,6 +329,40 @@ footer {
     top: 0;
     transition: top ease 0.5s;
     max-width: 300px;
+}
+
+.index__third-section {
+    color: white;
+    padding: 60px 100px;
+    background-color: #2e2e2e;
+}
+
+.index__third-section > h1 {
+    text-align: center;
+    margin: 0 0 60px;
+    font-size: 40px;
+}
+
+.service-cards {
+    display: flex;
+    justify-content: space-around;
+}
+
+.service-card {
+    padding: 30px;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.service-card > .far {
+    font-size: 50px;
+}
+
+.service-card > p {
+    margin: 30px 0 0;
 }
 
 /* MOVIE */
