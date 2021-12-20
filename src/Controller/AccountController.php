@@ -13,6 +13,8 @@ class AccountController extends AbstractController
     public function index(CallApiService $callApiService): Response
     {
         $user = $this->getUser();
+        $favoriteMovies = [];
+        $orders = [];
         
         foreach ($user->getMovieFavorites()->toArray() as $favoriteMovie) {
             $favoriteMovies[] = [
