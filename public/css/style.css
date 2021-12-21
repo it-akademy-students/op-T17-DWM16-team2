@@ -296,12 +296,17 @@ footer img {
     background-size: cover;
 }
 
-.index__banner > h1 {
+.banner__content {
+    width: 80%;
+    margin: auto;
+}
+
+.banner__content > h1 {
     margin-top: 0;
     font-size: 50px;
 }
 
-.index__banner > p {
+.banner__content > p {
     margin-top: 0;
     font-size: 20px;
 }
