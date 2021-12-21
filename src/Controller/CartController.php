@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Service\CartService;
 
@@ -17,50 +16,23 @@ class CartController extends AbstractController
     }
 
     #[Route('/cart/add/{id}', name: 'cart_add')]
-    public function add($id, SessionInterface $session)
+    public function add($id, CartService $cartService)
     {
-        $cart = $session->get('cart');
-
-        if (!empty($cart[$id])) {
-            $cart[$id]++;
-        } else {
-            $cart[$id] = 1;
-        }
-
-        $session->set('cart', $cart);
-
+        $cartService->add($id);
         return $this->redirectToRoute("cart_index");
     }
 
     #[Route('/cart/delete/{id}', name: 'cart_delete')]
-    public function delete($id, SessionInterface $session)
+    public function delete($id, CartService $cartService)
     {
-        $cart = $session->get('cart');
-
-        if (!empty($cart[$id])) {
-            unset($cart[$id]);
-        }
-
-        $session->set('cart', $cart);
-
+        $cartService->delete($id);
         return $this->redirectToRoute("cart_index");
     }
 
     #[Route('/cart/remove/{id}', name: 'cart_remove')]
-    public function remove($id, SessionInterface $session)
+    public function remove($id, CartService $cartService)
     {
-        $cart = $session->get('cart');
-
-        if (!empty($cart[$id])) {
-            if ($cart[$id] > 1) {
-                $cart[$id]--;
-            } else {
-                unset($cart[$id]);
-            }
-        }
-
-        $session->set('cart', $cart);
-
+        $cartService->remove($id);
         return $this->redirectToRoute("cart_index");
     }
 }
