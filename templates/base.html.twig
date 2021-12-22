@@ -2,28 +2,61 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Movie Town | {% block title %}{% endblock %}</title>
+        <title>{% block title %}{% endblock %} | Movie Town</title>
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="icon" href="{{ asset('images/favicon.ico') }}">
         <script src="https://kit.fontawesome.com/dd4bc6b830.js" crossorigin="anonymous"></script>
         <script src="{{ asset('js/app.js') }}" async></script>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
     </head>
     <body>
         <nav class="nav-bar">
-            <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo Movie Town"></a>
-            <ul>
-                <li><a href="login">Se connecter</a></li>
-                <li><a href="register" class="button-register">Créer un compte</a></li>
-            </ul>
+            <div class="nav-bar__left">
+                <a href="{{ path('home') }}">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo Movie Town">
+                </a>
+                <ul class="nav-bar-list">
+                    <li>
+                        <a href="{{ path('all_movies') }}">Tous les films</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-bar__right">
+                <ul class="nav-bar-list">
+                    <li><a href="{{  path('cart_index')}}">Panier</a></li>
+                    {% if app.user %}
+                        <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                        <li><a href="{{ path('account') }}" class="button button-black">Mon compte</a></li>
+                    {% else %}
+                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                        <li><a href="{{ path('app_register') }}" class="button button-black">Créer un compte</a></li>
+                    {% endif %}
+                </ul>
+            </div>
         </nav>
         {% block body %}{% endblock %}
     </body>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
     <footer>
-        <span>© 2021 by Movie Town, Inc.</span>
+        <div class="footer__row-one">
+            <div class="row-one__block-left">
+                <a href="#">Conditions générales d'utilisation</a>
+                <a href="#">Conditions générales de vente</a>
+                <a href="#">Conditions de la garantie</a>
+            </div>
+            <div class="row-one__block-right">
+                <a href="#">Politique de confidentialité</a>
+                <a href="#">Mentions légales</a>
+                <a href="#">Nous contacter</a>
+            </div>
+        </div>
+        <div class="footer__row-two">
+            <img src="{{ asset('images/logo_no_title.png') }}" alt="Logo Movie Town">
+            <span>© 2021 by Movie Town, Inc.</span>
+        </div>
     </footer>
 </html>

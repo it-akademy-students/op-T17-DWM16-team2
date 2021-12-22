@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -10,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Cette adresse email est déjà utilisée.")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -36,6 +38,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $last_name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $first_name;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $birth_date;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $join_date;
+
+    /**
+     * @ORM\OneToMany(targetEntity=MovieFavorite::class, mappedBy="user")
+     */
+    private $movieFavorites;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="user")
+     */
+    private $orders;
+
+    public function __construct()
+    {
+        $this->movieFavorites = new ArrayCollection();
+        $this->orders = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -124,5 +162,113 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->last_name;
+    }
+
+    public function setLastname(string $last_name): self
+    {
+        $this->last_name = $last_name;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->first_name;
+    }
+
+    public function setFirstname(string $first_name): self
+    {
+        $this->first_name = $first_name;
+
+        return $this;
+    }
+
+    public function getBirthDate(): ?\DateTimeInterface
+    {
+        return $this->birth_date;
+    }
+
+    public function setBirthDate(\DateTimeInterface $birth_date): self
+    {
+        $this->birth_date = $birth_date;
+
+        return $this;
+    }
+
+    public function getJoinDate(): ?\DateTimeInterface
+    {
+        return $this->join_date;
+    }
+
+    public function setJoinDate(\DateTimeInterface $join_date): self
+    {
+        $this->join_date = $join_date;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MovieFavorite[]
+     */
+    public function getMovieFavorites(): Collection
+    {
+        return $this->movieFavorites;
+    }
+
+    public function addMovieFavorite(MovieFavorite $movieFavorite): self
+    {
+        if (!$this->movieFavorites->contains($movieFavorite)) {
+            $this->movieFavorites[] = $movieFavorite;
+            $movieFavorite->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMovieFavorite(MovieFavorite $movieFavorite): self
+    {
+        if ($this->movieFavorites->removeElement($movieFavorite)) {
+            // set the owning side to null (unless already changed)
+            if ($movieFavorite->getUser() === $this) {
+                $movieFavorite->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Order[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

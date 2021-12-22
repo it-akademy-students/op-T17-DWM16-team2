@@ -2,27 +2,28 @@
 
 namespace App\Controller;
 
-use App\Repository\MovieRepository;
+use App\Entity\Movie;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
 use App\Service\CallApiService;
 
-class HomeController extends AbstractController
+class AllMoviesController extends AbstractController
 {
-    #[Route('/', name: 'home')]
-    public function index(MovieRepository $movieRepository, CallApiService $callApiService): Response
+    #[Route('/all/movies', name: 'all_movies')]
+    public function index(ManagerRegistry $doctrine, CallApiService $callApiService): Response
     {
-        // Prend les x derniers films
-        $movies = $movieRepository->findBy([], ['id' => 'ASC'], 4);
+        $movieRepo = $doctrine->getRepository(Movie::class);
+        $movies = $movieRepo->findAll();
 
         foreach($movies as $movie) {
-            $popularMovies[] = [
+            $allMovies[] = [
                 'db' => $movie,
                 $callApiService->getMovieData($movie->getImdbId())
             ];
-            // array_push($popularMovies, [
-            //     'id' => $movie->getId(),
+            // array_push($allMovies, [
+            //     'movie' => $movie,
             //     0 => [
             //         'title' => 'Inception',
             //         'year' => 2021,
@@ -32,8 +33,9 @@ class HomeController extends AbstractController
             //     ]
             // ]);
         }
-        return $this->render('home/index.html.twig', [
-            'popularMovies' => $popularMovies
+        
+        return $this->render('all_movies/index.html.twig', [
+            'movies' => $allMovies
         ]);
     }
 }

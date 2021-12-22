@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande réalisée avec succès{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <div class="card form-card success-order-card">
+        <h1>Merci !</h1>
+        <div class="text-center">
+            <p>Votre commande <span class="primary-color">#{{ order.reference }}</span> a bien été effectuée.</p>
+            <a class="button button-white" href="{{ path('order', {'reference': order.reference }) }}">Afficher ma commande</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

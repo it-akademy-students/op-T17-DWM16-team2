@@ -1,24 +1,48 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}Accueil{% endblock %}
+
 {% block body %}
+
 <div class="index__banner">
-    <h1>Blablabla</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non illo aliquid accusantium dolorem ex! Beatae numquam, sint dolor officiis quod, obcaecati porro, voluptas quam aperiam a vitae vero? Esse, quibusdam!</p>
+    <div class="banner__content">
+        <h1>Bienvenue sur Movie Town</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non illo aliquid accusantium dolorem ex! Beatae numquam, sint dolor officiis quod, obcaecati porro, voluptas quam aperiam a vitae vero? Esse, quibusdam!</p>
+    </div>
 </div>
 <div class="index__second-section">
-    <h1><i class="fas fa-film"></i> Des films à succès</h1>
-    <div id="carousel" class="second-section__popular-movies">
+    <h1><i class="fas fa-film primary-color"></i> Des films à succès</h1>
+    <div class="second-section__popular-movies">
         {% for movie in popularMovies %}
-        <a href="movie/{{ movie.id }}" class="popular-movies__movie">
-            <img src="{{ movie.image }}" alt="Affiche du film">
-            <div class="movie__info">
-                <h3>{{ movie.title }} <span class="movie__year">{{ movie.year }}</span></h3>
-                <i class="fas fa-star"></i>
-                <span>{{ movie.imDbRating }}</span>
-                <p>{{ movie.plotLocal|length > 150 ? movie.plotLocal|slice(0, 150) ~ '...' : movie.plotLocal }}</p>
+            <div class="popular-movies__movie card">
+                <a href="{{ path('movie', {'id': movie.db.id}) }}">
+                    <img class="poster-movie-card" src="{{ movie.0.Poster }}" alt="Affiche du film">
+                </a>
+                <div class="movie__info">
+                    <h3>{{ movie.0.Title }} <span class="movie-year primary-color">{{ movie.0.Year }}</span></h3>
+                    <i class="fas fa-star primary-color"></i>
+                    <span>{{ movie.0.imdbRating }}</span>
+                    <p>{{ movie.0.Plot|length > 150 ? movie.0.Plot|slice(0, 150) ~ '...' : movie.0.Plot }}</p>
+                </div>
             </div>
-        </a>
         {% endfor %}
+    </div>
+</div>
+<div class="index__third-section">
+    <h1>Les avantages</h1>
+    <div class="service-cards">
+        <div class="card service-card">
+            <i class="far fa-heart primary-color"></i>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error esse architecto ullam tempora praesentium eum laudantium laboriosam. Maxime, repudiandae neque, quis sequi laudantium voluptas illo accusamus dolorum consequuntur sit consectetur!<p>
+        </div>
+        <div class="card service-card">
+            <i class="far fa-user-circle primary-color"></i>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error esse architecto ullam tempora praesentium eum laudantium laboriosam. Maxime, repudiandae neque, quis sequi laudantium voluptas illo accusamus dolorum consequuntur sit consectetur!<p>
+        </div>
+        <div class="card service-card">
+            <i class="far fa-clock primary-color"></i>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error esse architecto ullam tempora praesentium eum laudantium laboriosam. Maxime, repudiandae neque, quis sequi laudantium voluptas illo accusamus dolorum consequuntur sit consectetur!<p>
+        </div>
     </div>
 </div>
 {% endblock %}
