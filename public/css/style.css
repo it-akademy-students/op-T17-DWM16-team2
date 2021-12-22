@@ -211,6 +211,14 @@ select {
     width: 200px;
 }
 
+.small-movie:first-child {
+    margin-left: 0;
+}
+
+.small-movie:last-child {
+    margin-right: 0;
+}
+
 .buttons-movie-card {
     margin-top: 18px;
     display: flex;
@@ -523,6 +531,7 @@ footer img {
 .account-overview {
     height: 150px;
     display: flex;
+    margin-bottom: 50px;
 }
 
 .account-overview > img {
@@ -532,4 +541,12 @@ footer img {
 
 .account-overview__details {
     margin-left: 30px;
+}
+
+.account-overview__details > h1 {
+    margin-bottom: 5px;
+}
+
+.account-movies {
+    margin-bottom: 50px;
 }
