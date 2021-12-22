@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="favorite-movies">
-        <h1><i class="fas fa-heart primary-color"></i> Mes films favoris  (<span id="favorite-count">{{ favorites|length }}</span>)</h1>
+        <h1><i class="fas fa-heart primary-color"></i> Mes films favoris (<span id="favorite-count">{{ favorites|length }}</span>)</h1>
         <div class="movies account-movies">
             {% if favorites %}
                 {% for movie in favorites %}

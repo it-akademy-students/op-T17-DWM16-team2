@@ -17,8 +17,7 @@ function addFavoriteMovie(e) {
                 if (htmlText) htmlText.innerHTML = 'Retirer des favoris'
             } else {
                 if (document.URL.includes('account')) {
-                    let favoriteCount = document.getElementById('favorite-count')
-                    favoriteCount.innerHTML--
+                    document.getElementById('favorite-count').innerHTML--
                     movieCard.remove()
                 } 
                 icon.classList.replace('fas', 'far')
