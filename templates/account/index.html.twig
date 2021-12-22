@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="wrapper">
-    <div class="account-overview">
+    <div class="account-overview card">
         <img src="https://kickprod.com/images/default-picture_0.png" alt="Photo de profil">
         <div class="account-overview__details">
             <h1>Bonjour, {{ user.firstname }}</h1>
@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="favorite-movies">
-        <h1><i class="fas fa-heart primary-color"></i> Mes films favoris</h1>
+        <h1><i class="fas fa-heart primary-color"></i> Mes films favoris  (<span id="favorite-count">{{ favorites|length }}</span>)</h1>
         <div class="movies account-movies">
             {% if favorites %}
                 {% for movie in favorites %}
@@ -43,7 +43,7 @@
         </div>
     </div>
     <div class="orders">
-        <h1><i class="fas fa-history primary-color"></i> Mes commandes</h1>
+        <h1><i class="fas fa-history primary-color"></i> Mes commandes ({{ orders|length }})</h1>
         {% if orders %}
             <table>
                 <thead>

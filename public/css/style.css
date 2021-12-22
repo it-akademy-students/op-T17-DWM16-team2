@@ -532,6 +532,7 @@ footer img {
     height: 150px;
     display: flex;
     margin-bottom: 50px;
+    padding: 30px;
 }
 
 .account-overview > img {
