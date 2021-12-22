@@ -7,7 +7,7 @@ html, body {
 }
 
 .wrapper {
-    padding: 50px 10%;
+    padding: 50px 15%;
     background-color: #101010;
     color: white;
     min-height: calc(100vh - 400px);
@@ -241,7 +241,7 @@ select {
 
 .nav-bar {
     height: 80px;
-    padding: 0 80px;
+    padding: 0 15%;
     background-color: #fecc02;
     display: flex;
     justify-content: space-between;
