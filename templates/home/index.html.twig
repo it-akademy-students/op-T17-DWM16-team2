@@ -5,8 +5,10 @@
 {% block body %}
 
 <div class="index__banner">
-    <h1>Bienvenue sur Movie Town</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non illo aliquid accusantium dolorem ex! Beatae numquam, sint dolor officiis quod, obcaecati porro, voluptas quam aperiam a vitae vero? Esse, quibusdam!</p>
+    <div class="banner__content">
+        <h1>Bienvenue sur Movie Town</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non illo aliquid accusantium dolorem ex! Beatae numquam, sint dolor officiis quod, obcaecati porro, voluptas quam aperiam a vitae vero? Esse, quibusdam!</p>
+    </div>
 </div>
 <div class="index__second-section">
     <h1><i class="fas fa-film primary-color"></i> Des films à succès</h1>
@@ -24,6 +26,23 @@
                 </div>
             </div>
         {% endfor %}
+    </div>
+</div>
+<div class="index__third-section">
+    <h1>Les avantages</h1>
+    <div class="service-cards">
+        <div class="card service-card">
+            <i class="far fa-heart primary-color"></i>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error esse architecto ullam tempora praesentium eum laudantium laboriosam. Maxime, repudiandae neque, quis sequi laudantium voluptas illo accusamus dolorum consequuntur sit consectetur!<p>
+        </div>
+        <div class="card service-card">
+            <i class="far fa-user-circle primary-color"></i>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error esse architecto ullam tempora praesentium eum laudantium laboriosam. Maxime, repudiandae neque, quis sequi laudantium voluptas illo accusamus dolorum consequuntur sit consectetur!<p>
+        </div>
+        <div class="card service-card">
+            <i class="far fa-clock primary-color"></i>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error esse architecto ullam tempora praesentium eum laudantium laboriosam. Maxime, repudiandae neque, quis sequi laudantium voluptas illo accusamus dolorum consequuntur sit consectetur!<p>
+        </div>
     </div>
 </div>
 {% endblock %}

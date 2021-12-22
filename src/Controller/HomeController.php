@@ -2,8 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Movie;
-use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\MovieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,10 +11,10 @@ use App\Service\CallApiService;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(ManagerRegistry $doctrine, CallApiService $callApiService): Response
+    public function index(MovieRepository $movieRepository, CallApiService $callApiService): Response
     {
         // Prend les x derniers films
-        $movies = $doctrine->getRepository(Movie::class)->findBy([], ['id' => 'ASC'], 4);
+        $movies = $movieRepository->findBy([], ['id' => 'ASC'], 4);
 
         foreach($movies as $movie) {
             $popularMovies[] = [

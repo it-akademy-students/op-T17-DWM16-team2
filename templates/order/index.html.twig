@@ -5,9 +5,9 @@
 {% block body %}
 <div class="wrapper">
     <div class="card card-big">
-        <h1>Récapitulatif de la commande #{{ order.reference }}</h1>
-        <span>Passée le <span class="primary-color">{{ order.createdAt|date("d/m/Y à h:i") }}</span></span>
-        <span>{{ order.last4Stripe }} <i class="fas fa-credit-card"></i></span>
+        <h1>Commande <span class="primary-color">#{{ order.reference }}</span></h1>
+        <span>Passée le <b>{{ order.createdAt|date("d/m/Y à h:i") }}</b></span><br>
+        <span>Payée avec <b>{{ order.last4Stripe }}</b> <i class="fas fa-credit-card primary-color"></i></span>
         <table class="table-order">
             <thead>
                 <tr>

@@ -4,8 +4,12 @@
 
 {% block body %}
 <div class="wrapper">
-    <h1>Merci !</h1>
-    <span>Votre commande <a href="{{ path('order', {'reference': order.reference }) }}" class="primary-color">#{{ order.reference }}</a> a bien été effectuée.</span>
-    <a class="button button-white" href="{{ path('order', {'reference': order.reference }) }}">Afficher ma commande</a>
+    <div class="card form-card success-order-card">
+        <h1>Merci !</h1>
+        <div class="text-center">
+            <p>Votre commande <span class="primary-color">#{{ order.reference }}</span> a bien été effectuée.</p>
+            <a class="button button-white" href="{{ path('order', {'reference': order.reference }) }}">Afficher ma commande</a>
+        </div>
+    </div>
 </div>
 {% endblock %}
