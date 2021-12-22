@@ -4,8 +4,13 @@
 
 {% block body %}
 <div class="wrapper">
-    <h1>Bonjour, {{ user.firstname }}</h1>
-    <span>Compte créé le {{ user.joindate|date("d/m/Y") }}</span>
+    <div class="account-overview">
+        <img src="https://kickprod.com/images/default-picture_0.png" alt="Photo de profil">
+        <div class="account-overview__details">
+            <h1>Bonjour, {{ user.firstname }}</h1>
+            <span>Compte créé le {{ user.joindate|date("d/m/Y") }}</span>
+        </div>
+    </div>
     <div class="favorite-movies">
         <h1><i class="fas fa-heart primary-color"></i> Mes films favoris</h1>
         <div class="movies">

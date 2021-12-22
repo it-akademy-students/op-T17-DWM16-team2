@@ -495,7 +495,7 @@ footer img {
 }
 
 .table-order {
-    margin: 20px 0;
+    margin: 35px 0;
 }
 
 .order-customer__details {
@@ -516,4 +516,20 @@ footer img {
 
 .success-order-card p {
     margin: 0 0 20px;
+}
+
+/* ACCOUNT */
+
+.account-overview {
+    height: 150px;
+    display: flex;
+}
+
+.account-overview > img {
+    height: 100%;
+    border-radius: 100%;
+}
+
+.account-overview__details {
+    margin-left: 30px;
 }
