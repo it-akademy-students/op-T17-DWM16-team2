@@ -7,7 +7,7 @@ html, body {
 }
 
 .wrapper {
-    padding: 50px;
+    padding: 50px 10%;
     background-color: #101010;
     color: white;
     min-height: calc(100vh - 400px);
@@ -27,6 +27,10 @@ html, body {
 
 .text-center {
     text-align: center;
+}
+
+.small {
+    font-size: 12px;
 }
 
 .card {
@@ -86,20 +90,30 @@ a {
     color: #fecc02;
 }
 
+.success-color {
+    color: #27ae60;
+}
+
 .table-fullsize {
     width: 100%;
+}
+
+table {
+    box-shadow: 0px 0px 5px 0px #0000008f;
 }
 
 table, th, td {
     border-collapse: collapse;
     background-color: #262626;
-    border-bottom: 1px solid #1a1a1a;
-    border-right: 1px solid #1a1a1a;
 }
 
 td, th {
     padding: 20px;
     text-align: center;
+}
+
+td:not(:last-child), th:not(:last-child) {
+    border-right: 1px solid #1a1a1a;
 }
 
 td > img {
@@ -109,6 +123,10 @@ td > img {
 
 th {
     background-color: #060606;
+}
+
+tr:not(:last-child) {
+    border-bottom: 1px solid #1a1a1a;
 }
 
 /* FORM */
@@ -455,8 +473,43 @@ footer img {
 
 /* ORDER */
 
+.order-card {
+    padding: 50px;
+}
+
+.order-card > h3 {
+    margin-top: 0;
+}
+
+.order-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-row__order-details {
+    width: 55%;
+}
+
+.order-row__order-customer{
+    width: 20%;
+}
+
 .table-order {
     margin: 20px 0;
+}
+
+.order-customer__details {
+    display: flex;
+    align-items: center;
+}
+
+.order-customer__details > img {
+    width: 50px;
+    border-radius: 100%;
+}
+
+.details__info {
+    margin-left: 10px;
 }
 
 /* SUCCESS ORDER */

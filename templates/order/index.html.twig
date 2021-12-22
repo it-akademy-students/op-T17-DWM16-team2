@@ -4,29 +4,42 @@
 
 {% block body %}
 <div class="wrapper">
-    <div class="card card-big">
-        <h1>Commande <span class="primary-color">#{{ order.reference }}</span></h1>
-        <span>Passée le <b>{{ order.createdAt|date("d/m/Y à h:i") }}</b></span><br>
-        <span>Payée avec <b>{{ order.last4Stripe }}</b> <i class="fas fa-credit-card primary-color"></i></span>
-        <table class="table-order">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Film</th>
-                    <th>Prix</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for movie in movies %}
+    <h1>Commande <span class="primary-color">#{{ order.reference }}</span></h1>
+    <div class="order-row">
+        <div class="order-row__order-details card order-card">
+            <span>Passée le <b>{{ order.createdAt|date("d/m/Y à h:i") }}</b></span><br>
+            <span>Status : <span class="success-color"><b>Terminée</b></span></span>
+            <table class="table-order table-fullsize">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Film</th>
+                        <th>Prix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movie in movies %}
                     <tr>
                         <td><img src="{{ movie.0.Poster }}" alt="Affiche du film"></td>
                         <td><a href="{{ path('movie', {'id': movie.db.id}) }}">{{ movie.0.Title }}</a></td>
                         <td>{{ movie.db.price }} €</td>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <span>Prix total : {{ order.price }} €</span>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <span>Prix total : <b>{{ order.price }} €</b></span><br>
+            <span>Payée avec <b>{{ order.last4Stripe }}</b> <i class="fas fa-credit-card primary-color"></i></span>
+        </div>
+        <div class="order-row__order-customer card order-card">
+            <h3><i class="far fa-user-circle primary-color"></i> Profil du client</h3>
+            <div class="order-customer__details">
+                <img src="https://kickprod.com/images/default-picture_0.png" alt="Photo de profil">
+                <div class="details__info">
+                    <span>{{ app.user.firstname }} {{ app.user.lastname }}</span><br>
+                    <span class="small">{{ app.user.email }}</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
