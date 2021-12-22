@@ -91,9 +91,10 @@ a {
 }
 
 table, th, td {
-    border: 5px solid #1c1c1c;
     border-collapse: collapse;
     background-color: #262626;
+    border-bottom: 1px solid #1a1a1a;
+    border-right: 1px solid #1a1a1a;
 }
 
 td, th {
@@ -104,6 +105,10 @@ td, th {
 td > img {
     width: 100px;
     border-radius: 5px;   
+}
+
+th {
+    background-color: #060606;
 }
 
 /* FORM */
