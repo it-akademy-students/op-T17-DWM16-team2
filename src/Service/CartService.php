@@ -2,15 +2,15 @@
 
 namespace App\Service;
 
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Repository\MovieRepository;
 use App\Service\CallApiService;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class CartService
 {
-    public function __construct(SessionInterface $session, MovieRepository $movieRepository, CallApiService $callApiService)
+    public function __construct(RequestStack $requestStack, MovieRepository $movieRepository, CallApiService $callApiService)
     {
-        $this->session = $session;
+        $this->session = $requestStack->getSession();
         $this->movieRepository = $movieRepository;
         $this->callApiService = $callApiService;
     }
