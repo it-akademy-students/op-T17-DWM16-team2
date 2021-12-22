@@ -16,7 +16,10 @@ function addFavoriteMovie(e) {
                 icon.classList.replace('far', 'fas')
                 if (htmlText) htmlText.innerHTML = 'Retirer des favoris'
             } else {
-                if (document.URL.includes('account')) movieCard.remove()
+                if (document.URL.includes('account')) {
+                    document.getElementById('favorite-count').innerHTML--
+                    movieCard.remove()
+                } 
                 icon.classList.replace('fas', 'far')
                 if (htmlText) htmlText.innerHTML = 'Ajouter en favoris'
             }
